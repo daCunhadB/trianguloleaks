@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Editar artigo — TriânguloLeaks</title>
+<link rel="canonical" href="https://dacunhadb.github.io/trianguloleaks/editar.html">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#6d1f2b">
+<meta name="author" content="TriânguloLeaks">
+<meta property="og:site_name" content="TriânguloLeaks">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Editar artigo — TriânguloLeaks">
+<meta property="og:description" content="Esta página de edição genérica identifica o artigo pela URL (por exemplo, editar.html?p=uberaba ) e verifica a sessão local — os dois exigem JavaScript. Sem JavaScript, use o exemplo fixo em…">
+<meta property="og:url" content="https://dacunhadb.github.io/trianguloleaks/editar.html">
+<meta property="og:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/editar.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cartão de compartilhamento: Editar artigo — TriânguloLeaks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Editar artigo — TriânguloLeaks">
+<meta name="twitter:description" content="Esta página de edição genérica identifica o artigo pela URL (por exemplo, editar.html?p=uberaba ) e verifica a sessão local — os dois exigem JavaScript. Sem JavaScript, use o exemplo fixo em…">
+<meta name="twitter:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/editar.png">
+<meta name="twitter:image:alt" content="Cartão de compartilhamento: Editar artigo — TriânguloLeaks">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Editar artigo","description":"Esta página de edição genérica identifica o artigo pela URL (por exemplo, editar.html?p=uberaba ) e verifica a sessão local — os dois exigem JavaScript. Sem JavaScript, use o exemplo fixo em…","url":"https://dacunhadb.github.io/trianguloleaks/editar.html","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"TriânguloLeaks","url":"https://dacunhadb.github.io/trianguloleaks/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Página principal","item":"https://dacunhadb.github.io/trianguloleaks/index.html"},{"@type":"ListItem","position":2,"name":"Editar artigo","item":"https://dacunhadb.github.io/trianguloleaks/editar.html"}]}]}</script>
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; frame-src 'self' https://www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/responsivo.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+<meta name="description" content="Esta página de edição genérica identifica o artigo pela URL (por exemplo, editar.html?p=uberaba ) e verifica a sessão local — os dois exigem JavaScript. Sem JavaScript, use o exemplo fixo em…"></head>
+<!--
+  editar.html — editor GENÉRICO de artigos (edição OU criação).
+  Ao contrário de editar-triangulo-mineiro.html (uma página fixa,
+  mantida por compatibilidade com links antigos), esta página serve
+  QUALQUER slug através da query string:
+    editar.html?p=uberaba              → edita o artigo "uberaba"
+    editar.html?p=nova-cidade&novo=1   → cria um artigo novo
+  Só existe UM arquivo porque, sem um servidor, isso é o mais perto
+  de "uma página de edição por artigo" que dá para manter sem
+  duplicar HTML a cada nova cidade. Todo o preenchimento (título,
+  links de volta, mensagens) é feito por js/editor.js a partir do
+  parâmetro "p" — por isso esta página DEPENDE de JavaScript para
+  saber qual artigo está sendo editado (ver o <noscript> abaixo).
+  Exigência "para editar ou adicionar artigos, é necessário estar
+  logado": como não há backend, a única verificação possível é via
+  TP.estaLogado() (localStorage) em JavaScript. Por isso o padrão
+  SEM JS — e o padrão inicial COM JS, antes da checagem — é o mais
+  seguro possível: mostrar o aviso de login e manter #area-editor
+  com o atributo `hidden`. Só quando js/editor.js confirma
+  TP.estaLogado() === true é que o formulário aparece.
+-->
+<!--
+  ÍNDICE DA PÁGINA — editar.html (gerado por ferramentas/construir.py; não edite à mão)
+  1. Metadados: charset, título, viewport, description, canonical absoluto, robots, Open Graph/X Card (og:image = img/social/editar.png), JSON-LD, CSP e folhas de estilo (tokens, base, layout, componentes, responsivo, print); js/tema.js síncrono (tema claro por padrão).
+  2. .ladrilho — faixa decorativa.
+  3. .barra-pessoal — atalhos globais e conta.
+  4. header.cabecalho — logo, busca (search) e botão de tema.
+  5. nav.abas-nav — Ler / Editar / Ver histórico.
+  6. .corpo — lateral de navegação (desktop) / .menu-mobile e <main id="conteudo">.
+  7. main#conteudo, com as seções na ordem abaixo:
+  8. footer.rodape — aviso de independência e licenciamento.
+  9. <dialog>: #dialogo-ajuda-edicao.
+  10. Scripts (defer, sempre externos por causa da CSP): estado.js, indice.js, autocompletar.js, editor.js, dialogos.js, recolher.js, aprendizado.js, navegacao-ferramentas.js.
+-->
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul><li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="especial-genealogia.html">Genealogia</a></li>
+      <li><a href="especial-indice-tematico.html">Índice temático</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li></ul>
+    <ul data-tp-area-conta="">
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema="" aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro" aria-pressed="false">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<nav class="abas-nav" aria-label="Espaços nominais">
+  <ul>
+    <li><a href="index.html" data-tp-href-artigo="">Ler</a></li>
+    <li><a href="editar.html" aria-current="page">Editar</a></li>
+    <li><a href="index.html" data-tp-href-historico="">Ver histórico</a></li>
+  </ul>
+</nav>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Ajuda</summary><ul><li><a href="#" data-tp-dialogo="#dialogo-ajuda-edicao">Ajuda de edição</a></li><li><a href="ajuda-editar.html">Manual completo</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html" data-tp-href-artigo="">Voltar ao artigo</a></li><li><a href="especial-indice-tematico.html">Índice temático</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal" data-tp-tipo="pagina">
+    <h1 data-tp-titulo-editor="">Editar artigo</h1>
+
+    <noscript>
+      <p class="aviso-simulacao">
+        Esta página de edição genérica identifica o artigo pela URL (por exemplo,
+        <code>editar.html?p=uberaba</code>) e verifica a sessão local — os dois exigem
+        JavaScript. Sem JavaScript, use o exemplo fixo em
+        <a href="editar-triangulo-mineiro.html">editar-triangulo-mineiro.html</a>, que funciona
+        de forma totalmente estática.
+      </p>
+    </noscript>
+
+    <div id="aviso-login-necessario" role="note">
+      <div class="titulo-secao"><h2>É necessário estar logado</h2></div>
+      <p>
+        Para editar ou criar artigos na TriânguloLeaks é preciso ter uma conta e estar
+        conectado neste navegador. Usuários logados só podem editar e adicionar artigos —
+        nenhuma outra permissão especial é concedida.
+      </p>
+      <p style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <a class="botao" id="link-entrar-para-editar" href="conta-entrar.html">Entrar</a>
+        <a class="botao secundario" href="conta-criar.html">Criar conta</a>
+      </p>
+    </div>
+
+    <div id="area-editor" hidden>
+      <p class="aviso-simulacao">
+        Simulação de edição: o conteúdo salvo fica apenas neste navegador (localStorage) e não é
+        enviado a nenhum servidor. Nada aqui altera de fato o artigo público.
+      </p>
+
+      <form id="form-editor" method="post" action="#">
+        <div class="campo" style="margin-bottom:1rem;">
+          <label for="titulo-novo-artigo" data-tp-rotulo-titulo="">Título do artigo</label>
+          <input type="text" id="titulo-novo-artigo" name="titulo" maxlength="120">
+        </div>
+
+        <div class="barra-editor" role="toolbar" aria-label="Formatação de texto">
+          <button type="button" data-marcacao="'''" data-rotulo="negrito" aria-label="Negrito"><strong>N</strong></button>
+          <button type="button" data-marcacao="''" data-rotulo="itálico" aria-label="Itálico"><em>I</em></button>
+          <button type="button" data-marcacao="==" data-rotulo="título" aria-label="Título de seção">==Título==</button>
+          <button type="button" data-marcacao="[[" data-rotulo="link" aria-label="Link interno">[[Link]]</button>
+          <button type="button" data-marcacao="&lt;ref&gt;" data-rotulo="referência" aria-label="Referência">&lt;ref&gt;</button>
+        </div>
+        <label class="visualmente-oculto" for="corpo-wiki">Texto do artigo (marcação wiki)</label>
+        <textarea id="corpo-wiki" name="corpo" rows="16" placeholder="{{Aviso|Este artigo precisa de mais referências para verificação.}}
+
+'''Nome do artigo''' é ...
+
+== Geografia ==
+...
+
+== História ==
+..."></textarea>
+
+        <div class="campo" style="margin-top:1rem;">
+          <label for="resumo-edicao">Resumo da edição</label>
+          <input type="text" id="resumo-edicao" name="resumo" maxlength="200" placeholder="Descreva brevemente sua alteração">
+        </div>
+
+        <div class="campo">
+          <label><input type="checkbox" id="edicao-menor" style="width:auto; display:inline-block; margin-right:0.4em;"> Esta é uma edição menor</label>
+          <label><input type="checkbox" id="vigiar-apos-salvar" style="width:auto; display:inline-block; margin-right:0.4em;"> Vigiar esta página</label>
+        </div>
+
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button type="button" id="btn-previsao" class="botao secundario">Mostrar previsão</button>
+          <button type="submit" id="btn-salvar" class="botao" data-tp-rotulo-salvar="">Salvar página</button>
+        </div>
+      </form>
+
+      <section id="area-previsao" hidden aria-live="polite" style="margin-top:1.5rem;">
+        <div class="titulo-secao"><h2>Previsão</h2></div>
+        <div id="conteudo-previsao"></div>
+      </section>
+
+      <p id="confirmacao-salvo" role="status" hidden style="color:var(--cerrado); font-weight:700;">
+        Edição salva localmente com sucesso.
+      </p>
+    </div>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<dialog id="dialogo-ajuda-edicao" aria-labelledby="titulo-ajuda-edicao">
+  <div class="dialogo-corpo">
+    <h2 id="titulo-ajuda-edicao">Ajuda de edição</h2>
+    <table class="wikitable">
+      <thead><tr><th scope="col">Você digita</th><th scope="col">Aparece como</th></tr></thead>
+      <tbody>
+        <tr><td><code>'''negrito'''</code></td><td><strong>negrito</strong></td></tr>
+        <tr><td><code>''itálico''</code></td><td><em>itálico</em></td></tr>
+        <tr><td><code>== Título ==</code></td><td>Título de seção</td></tr>
+        <tr><td><code>[[Página]]</code></td><td>Link interno</td></tr>
+        <tr><td><code>&lt;ref&gt;fonte&lt;/ref&gt;</code></td><td>Nota de rodapé numerada</td></tr>
+      </tbody>
+    </table>
+    <form method="dialog"><button type="submit" class="botao secundario">Fechar</button></form>
+  </div>
+</dialog>
+
+<script src="js/estado.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/autocompletar.js" defer></script>
+<script src="js/editor.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
+<script src="js/navegacao-ferramentas.js" defer></script>
+</body></html>

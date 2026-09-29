@@ -1,0 +1,8 @@
+# robots.txt — TriânguloLeaks
+User-agent: *
+Allow: /
+Disallow: /editar.html
+Disallow: /diff-triangulo-mineiro.html
+Disallow: /conta-
+
+Sitemap: https://dacunhadb.github.io/trianguloleaks/sitemap.xml

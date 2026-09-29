@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrar — TriânguloLeaks</title>
+<link rel="canonical" href="https://dacunhadb.github.io/trianguloleaks/conta-entrar.html">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#6d1f2b">
+<meta name="author" content="TriânguloLeaks">
+<meta property="og:site_name" content="TriânguloLeaks">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Entrar — TriânguloLeaks">
+<meta property="og:description" content="Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um login local simulado.">
+<meta property="og:url" content="https://dacunhadb.github.io/trianguloleaks/conta-entrar.html">
+<meta property="og:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/conta-entrar.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cartão de compartilhamento: Entrar — TriânguloLeaks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Entrar — TriânguloLeaks">
+<meta name="twitter:description" content="Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um login local simulado.">
+<meta name="twitter:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/conta-entrar.png">
+<meta name="twitter:image:alt" content="Cartão de compartilhamento: Entrar — TriânguloLeaks">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Entrar","description":"Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um login local simulado.","url":"https://dacunhadb.github.io/trianguloleaks/conta-entrar.html","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"TriânguloLeaks","url":"https://dacunhadb.github.io/trianguloleaks/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Página principal","item":"https://dacunhadb.github.io/trianguloleaks/index.html"},{"@type":"ListItem","position":2,"name":"Entrar","item":"https://dacunhadb.github.io/trianguloleaks/conta-entrar.html"}]}]}</script>
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um login local simulado.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://accounts.google.com https://alcdn.msauth.net https://appleid.cdn-apple.com; connect-src 'self' https://oauth2.googleapis.com https://login.microsoftonline.com https://appleid.apple.com; frame-src https://accounts.google.com; form-action 'self'; base-uri 'none'; object-src 'none'">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/responsivo.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<!--
+  ================================================================
+  PÁGINA: conta-entrar.html — "Entrar"
+  ================================================================
+  Í N D I C E   D E S T A   P Á G I N A
+  1. <head>            — metadados, folhas de estilo, tema.js
+  2. .ladrilho          — faixa decorativa (topo)
+  3. .cabecalho         — logo + nome do projeto
+  4. .conteudo-principal
+     4.0 Login por chave de acesso (Passkey/WebAuthn) — REAL, ver
+         js/passkeys.js
+     4.1 Aviso: o que é real e o que ainda é simulação local
+     4.2 Formulário de login local (usuário fictício, simulado)
+     4.3 Botões de login social — Google, Microsoft e Apple são
+         REAIS (js/login-google.js, js/login-microsoft.js,
+         js/login-apple.js + js/login-config.js); Protonmail
+         continua simulado (sem OAuth público da Proton)
+  5. .rodape            — aviso de independência do projeto
+  Login por chave de acesso, Google, Microsoft e Apple são
+  autenticação de verdade (ver comentários em js/passkeys.js,
+  js/login-google.js, js/login-microsoft.js e js/login-apple.js).
+  O restante desta página continua sendo uma simulação local: nada
+  é enviado a um servidor (este site não tem um).
+  ================================================================
+-->
+<!--
+  ÍNDICE DA PÁGINA — conta-entrar.html (gerado por ferramentas/construir.py; não edite à mão)
+  1. Metadados: charset, título, viewport, description, canonical absoluto, robots, Open Graph/X Card (og:image = img/social/conta-entrar.png), JSON-LD, CSP e folhas de estilo (tokens, base, layout, componentes, responsivo, print); js/tema.js síncrono (tema claro por padrão).
+  2. .ladrilho — faixa decorativa.
+  3. header.cabecalho — logo, busca (search) e botão de tema.
+  4. main#conteudo, com as seções na ordem abaixo:
+  4.1. Formulário #form-entrar.
+  5. footer.rodape — aviso de independência e licenciamento.
+  6. <dialog>: #dialogo-login-social.
+  7. Scripts (defer, sempre externos por causa da CSP): estado.js, dialogos.js, autocompletar.js, passkeys.js, login-config.js, login-google.js, login-microsoft.js, login-apple.js, login-real.js, conta.js, recolher.js, aprendizado.js, navegacao-ferramentas.js.
+-->
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============ FAIXA DECORATIVA (ladrilho hidráulico) ============ -->
+<div class="ladrilho" aria-hidden="true"></div>
+
+<!-- ============ CABEÇALHO: logo + nome do projeto ============ -->
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks">
+      <circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle>
+      <polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon>
+    </svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema="" aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro" aria-pressed="false">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<!-- ============ CONTEÚDO PRINCIPAL ============ -->
+<main id="conteudo" class="conteudo-principal" style="max-width:26rem; margin:0 auto;" data-tp-tipo="conta">
+  <h1>Entrar</h1>
+
+  <!-- —— 4.1 Aviso: o que é real e o que ainda é local/simulado —— -->
+  <p class="aviso-simulacao">
+    <strong>Entrar com chave de acesso</strong> (abaixo), <strong>Google</strong>, <strong>Microsoft</strong>
+    e <strong>Apple</strong> são autenticação de verdade — quando configuradas pelo administrador do
+    site (ver js/login-config.js); sem configuração, o botão avisa claramente em vez de fingir um
+    login. Já o formulário <q>Com nome de usuário local</q> e o botão <strong>Protonmail</strong> continuam
+    sendo uma simulação local — nada é enviado a um servidor ou a esses serviços; apenas o nome
+    escolhido é guardado neste navegador.
+  </p>
+
+  <!-- —— Login por chave de acesso (Passkey/WebAuthn) — REAL —— -->
+  <fieldset id="fieldset-passkey">
+    <legend>Com chave de acesso (Passkey)</legend>
+    <p class="ajuda-campo" title="Usa a biometria/PIN deste aparelho via WebAuthn, o padrão do navegador para login sem senha. Não confirma um e-mail do mundo real — apenas que é o mesmo aparelho que criou a chave.">
+      Login real baseado na biometria/PIN deste aparelho — sem senha, sem servidor.
+    </p>
+    <p id="aviso-passkey-indisponivel" class="aviso-simulacao" hidden>
+      Este navegador ou conexão não aceita chaves de acesso (é preciso HTTPS ou localhost, e um
+      navegador com suporte a WebAuthn).
+    </p>
+    <p id="aviso-passkey-sem-cadastro" style="font-size:0.85rem;" hidden>
+      Nenhuma chave de acesso foi criada neste navegador ainda. <a href="conta-criar.html">Crie uma
+      conta</a> primeiro.
+    </p>
+    <button type="button" id="botao-entrar-passkey" class="botao" style="width:100%;">Entrar com uma chave de acesso</button>
+    <p id="erro-passkey" role="alert" hidden style="color:#8a1c1c; font-weight:700;"></p>
+  </fieldset>
+
+  <div class="separador-ou" role="separator" aria-label="ou"><span>ou</span></div>
+
+  <!-- —— 4.2 Formulário de login local —— -->
+  <form id="form-entrar" novalidate>
+    <fieldset>
+      <legend>Com nome de usuário local</legend>
+      <div class="campo">
+        <label for="usuario-entrar">Nome de usuário</label>
+        <input type="text" id="usuario-entrar" name="usuario" autocomplete="username" required minlength="3" maxlength="40">
+      </div>
+      <div class="campo">
+        <label for="email-entrar">E-mail</label>
+        <input type="email" id="email-entrar" name="email" autocomplete="email" required>
+        <p class="ajuda-campo">Usado apenas para o registro de acessos deste navegador (<a href="especial-registro-de-acessos.html">o que é isso?</a>) e para anexar seus dados a mensagens enviadas pela Central de ajuda — nunca é enviado a nenhum servidor.</p>
+      </div>
+      <div class="campo">
+        <label for="senha-entrar">Senha</label>
+        <input type="password" id="senha-entrar" name="senha" autocomplete="current-password" required minlength="4">
+        <p class="ajuda-campo">A senha não é validada nem armazenada — este campo existe apenas para reproduzir a experiência visual de um formulário de login.</p>
+      </div>
+      <button type="submit" class="botao" style="width:100%;">Entrar</button>
+    </fieldset>
+  </form>
+
+  <p id="confirmacao-entrar" role="status" hidden style="color:var(--cerrado); font-weight:700;"></p>
+
+  <!-- —— 4.3 Botões de login social (simulados) —— -->
+  <div class="separador-ou" role="separator" aria-label="ou entre com uma conta externa">
+    <span>ou entre com</span>
+  </div>
+
+  <div class="lista-login-social">
+    <button type="button" class="botao-social" data-provedor="Google" data-login-real="google" id="botao-login-google">
+      <span class="icone-social icone-social--google" aria-hidden="true">G</span>
+      Continuar com Google
+    </button>
+    <button type="button" class="botao-social" data-provedor="Microsoft" data-login-real="microsoft" id="botao-login-microsoft">
+      <span class="icone-social icone-social--microsoft" aria-hidden="true">
+        <svg viewBox="0 0 20 20" width="16" height="16"><rect x="1" y="1" width="8" height="8" fill="#f35325"></rect><rect x="11" y="1" width="8" height="8" fill="#81bc06"></rect><rect x="1" y="11" width="8" height="8" fill="#05a6f0"></rect><rect x="11" y="11" width="8" height="8" fill="#ffba08"></rect></svg>
+      </span>
+      Continuar com Microsoft (Outlook)
+    </button>
+    <button type="button" class="botao-social" data-provedor="Apple" data-login-real="apple" id="botao-login-apple">
+      <span class="icone-social icone-social--apple" aria-hidden="true"></span>
+      Continuar com Apple
+    </button>
+    <button type="button" class="botao-social" data-provedor="Protonmail">
+      <span class="icone-social icone-social--proton" aria-hidden="true"></span>
+      Continuar com Protonmail
+    </button>
+  </div>
+
+  <p style="font-size:0.85rem; margin-top:1.5rem;">
+    Ainda não tem uma conta? <a href="conta-criar.html">Criar conta</a>.
+  </p>
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia, com Google, Microsoft, Apple ou Proton AG.</p>
+</footer>
+
+<!-- Dialog de simulação exibido ao clicar em um provedor social -->
+<dialog id="dialogo-login-social" aria-labelledby="titulo-dialogo-social">
+  <div class="dialogo-corpo">
+    <h2 id="titulo-dialogo-social">Login social simulado</h2>
+    <p id="texto-dialogo-social">
+      Em um site real, este botão abriria a tela de autenticação do provedor escolhido.
+      Aqui, por se tratar de um projeto de demonstração sem servidor, nenhuma janela externa é
+      aberta e nenhum dado é enviado a terceiros.
+    </p>
+    <form method="dialog"><button type="submit" class="botao secundario">Entendi</button></form>
+  </div>
+</dialog>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+<script src="js/autocompletar.js" defer></script>
+<script src="js/passkeys.js" defer></script>
+<script src="js/login-config.js" defer></script>
+<script src="js/login-google.js" defer></script>
+<script src="js/login-microsoft.js" defer></script>
+<script src="js/login-apple.js" defer></script>
+<script src="js/login-real.js" defer></script>
+<script src="js/conta.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
+<script src="js/navegacao-ferramentas.js" defer></script>
+</body></html>

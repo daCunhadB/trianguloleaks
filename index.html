@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TriânguloLeaks — A enciclopédia do Triângulo Mineiro</title>
+<link rel="canonical" href="https://dacunhadb.github.io/trianguloleaks/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#6d1f2b">
+<meta name="author" content="TriânguloLeaks">
+<meta property="og:site_name" content="TriânguloLeaks">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TriânguloLeaks — A enciclopédia do Triângulo Mineiro — TriânguloLeaks">
+<meta property="og:description" content="A TriânguloLeaks é uma enciclopédia livre e independente sobre o Triângulo Mineiro: geografia, história, cultura e cidades da região.">
+<meta property="og:url" content="https://dacunhadb.github.io/trianguloleaks/">
+<meta property="og:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/index.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cartão de compartilhamento: TriânguloLeaks — A enciclopédia do Triângulo Mineiro — TriânguloLeaks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TriânguloLeaks — A enciclopédia do Triângulo Mineiro — TriânguloLeaks">
+<meta name="twitter:description" content="A TriânguloLeaks é uma enciclopédia livre e independente sobre o Triângulo Mineiro: geografia, história, cultura e cidades da região.">
+<meta name="twitter:image" content="https://dacunhadb.github.io/trianguloleaks/img/social/index.png">
+<meta name="twitter:image:alt" content="Cartão de compartilhamento: TriânguloLeaks — A enciclopédia do Triângulo Mineiro — TriânguloLeaks">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"TriânguloLeaks","url":"https://dacunhadb.github.io/trianguloleaks/","inLanguage":"pt-BR","description":"A TriânguloLeaks é uma enciclopédia livre e independente sobre o Triângulo Mineiro: geografia, história, cultura e cidades da região.","potentialAction":{"@type":"SearchAction","target":"https://dacunhadb.github.io/trianguloleaks/busca.html?search={termo}","query-input":"required name=termo"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Página principal","item":"https://dacunhadb.github.io/trianguloleaks/index.html"},{"@type":"ListItem","position":2,"name":"TriânguloLeaks — A enciclopédia do Triângulo Mineiro","item":"https://dacunhadb.github.io/trianguloleaks/index.html"}]}]}</script>
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="A TriânguloLeaks é uma enciclopédia livre e independente sobre o Triângulo Mineiro: geografia, história, cultura e cidades da região.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; frame-src 'self' https://www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/responsivo.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<!--
+  ================================================================
+  PÁGINA: index.html — Portal / página principal
+  ================================================================
+  Í N D I C E   D E S T A   P Á G I N A
+  1. <head>              — metadados, folhas de estilo (tokens →
+                            base → layout → componentes → print),
+                            tema.js carregado de forma síncrona
+                            para aplicar o tema salvo sem "flash"
+  2. .ladrilho            — faixa decorativa (topo)
+  3. .barra-pessoal       — Entrar/Criar conta/Contribuições/…
+  4. .cabecalho           — logo (SVG inline) + busca com <datalist>
+  5. .corpo               — grade lateral + <main>
+     5.1 .lateral (desktop) / .menu-mobile (≤720px, mesmo conteúdo)
+     5.2 <main id="conteudo">
+         · Artigo em destaque
+         · Você sabia… / Neste dia (efemérides)
+         · Imagem do dia
+         · Eventos atuais (exemplo)
+         · Portais temáticos
+         · Mapa esquemático clicável (SVG)
+  6. .rodape              — colunas institucionais + aviso legal
+  7. <dialog id="dialogo-entrar"> — atalho de login (ver também as
+     páginas completas conta-entrar.html / conta-criar.html)
+  Todas as seções acima funcionam sem JavaScript; os scripts no
+  fim do <body> (estado.js, dialogos.js) apenas adicionam
+  melhorias progressivas (ver ESTRUTURA-DO-PROJETO.md).
+  ================================================================
+-->
+<!--
+  ÍNDICE DA PÁGINA — index.html (gerado por ferramentas/construir.py; não edite à mão)
+  1. Metadados: charset, título, viewport, description, canonical absoluto, robots, Open Graph/X Card (og:image = img/social/index.png), JSON-LD, CSP e folhas de estilo (tokens, base, layout, componentes, responsivo, print); js/tema.js síncrono (tema claro por padrão).
+  2. .ladrilho — faixa decorativa.
+  3. .barra-pessoal — atalhos globais e conta.
+  4. header.cabecalho — logo, busca (search) e botão de tema.
+  5. .corpo — lateral de navegação (desktop) / .menu-mobile e <main id="conteudo">.
+  6. main#conteudo, com as seções na ordem abaixo:
+  6.1. Comece por aqui (#comece-por-aqui)
+  7. footer.rodape — aviso de independência e licenciamento.
+  8. <dialog>: #dialogo-entrar.
+  9. Scripts (defer, sempre externos por causa da CSP): estado.js, indice.js, dialogos.js, efemerides.js, contador-home.js, aprendizado.js, home-dinamica.js, recolher.js, navegacao-ferramentas.js.
+-->
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============ 2. FAIXA DECORATIVA (ladrilho hidráulico) ============ -->
+<div class="ladrilho" aria-hidden="true"></div>
+
+<!-- ============ 3. BARRA PESSOAL (conta) ============ -->
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul><li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="especial-genealogia.html">Genealogia</a></li>
+      <li><a href="especial-indice-tematico.html">Índice temático</a></li>
+      <li><a href="projeto-eventos-atuais.html">Eventos atuais</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li></ul>
+    <ul data-tp-area-conta="">
+      <li><a href="conta-entrar.html" data-tp-dialogo="#dialogo-entrar">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 4. CABEÇALHO: logo + busca ============ -->
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="42" height="42" viewBox="0 0 100 100" role="img" aria-label="Símbolo da TriânguloLeaks">
+      <circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle>
+      <path d="M15 65 Q 30 50, 45 65 T 75 65" fill="none" stroke="var(--papel)" stroke-width="3" opacity="0.6"></path>
+      <path d="M20 72 Q 35 58, 50 72 T 80 72" fill="none" stroke="var(--papel)" stroke-width="3" opacity="0.4"></path>
+      <polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon>
+    </svg>
+    <span>
+      <span class="nome-projeto">TriânguloLeaks</span>
+      <span class="slogan">A enciclopédia do Triângulo Mineiro</span>
+    </span>
+  </a>
+
+  <search role="search">
+    <form class="busca-form" action="busca.html" method="get">
+      <label class="visualmente-oculto" for="q-principal">Pesquisar na TriânguloLeaks</label>
+      <input type="search" id="q-principal" name="search" list="titulos" accesskey="f" autocomplete="off" enterkeyhint="search" placeholder="Pesquisar…">
+      <datalist id="titulos">
+        <option value="Triângulo Mineiro">
+        </option><option value="Uberlândia">
+        </option><option value="Uberaba">
+        </option><option value="Araxá">
+        </option><option value="Frutal">
+        </option><option value="Ituiutaba">
+        </option><option value="Sacramento (MG)">
+        </option><option value="Rio Grande">
+        </option><option value="Rio Paranaíba">
+        </option><option value="Peirópolis">
+        </option><option value="Zebu e a ExpoZebu">
+        </option><option value="Cerrado">
+        </option><option value="Pão de queijo">
+        </option><option value="Estrada de Ferro Mogiana">
+      </option></datalist>
+      <button type="submit" name="go" class="secundario">Ir</button>
+      <button type="submit">Pesquisar</button>
+    </form>
+  </search>
+  <button type="button" class="botao-tema" data-tp-alternar-tema="" aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro" aria-pressed="false">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<!-- ============ 5. CORPO: lateral + conteúdo principal ============ -->
+<div class="corpo envolucro-largo">
+  <!-- —— 5.1 Lateral (visível em telas ≥720px) —— -->
+  <aside class="lateral lateral-desktop" aria-label="Navegação lateral">
+    <details open>
+      <summary>Navegação</summary>
+      <ul>
+        <li><a href="index.html">Página principal</a></li>
+        <li><a href="projeto-eventos-atuais.html">Eventos atuais</a></li>
+        <li><a href="projeto-sobre.html">Sobre a TriânguloLeaks</a></li>
+      <li><a href="especial-indice-tematico.html">Índice temático</a></li></ul>
+    </details>
+    <details open>
+      <summary>Colaboração</summary>
+      <ul>
+        <li><a href="projeto-cafe-dos-colaboradores.html">Café dos colaboradores</a></li>
+        <li><a href="especial-novas-paginas.html">Novas páginas</a></li>
+        <li><a href="ajuda-index.html">Ajuda</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Ferramentas</summary>
+      <ul>
+        <li><a href="especial-todas-as-paginas.html">Todas as páginas</a></li>
+        <li><a href="especial-categorias.html">Categorias</a></li>
+        <li><a href="especial-estatisticas.html">Estatísticas</a></li>
+        <li><a href="especial-registro-de-acessos.html">Registro de acessos</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Imprimir/exportar</summary>
+      <ul>
+        <li><button type="button" class="imprimir-botao" style="background:none;border:none;color:var(--anil);text-decoration:underline;cursor:pointer;padding:0;font:inherit;">Versão para impressão</button></li>
+      </ul>
+    </details>
+  </aside>
+
+  <!-- —— 5.1 Menu (visível em telas <720px; mesmo conteúdo da lateral) —— -->
+  <details class="menu-mobile">
+    <summary>Menu</summary>
+    <aside class="lateral" aria-label="Navegação (mobile)">
+      <ul>
+        <li><a href="index.html">Página principal</a></li>
+        <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+        <li><a href="projeto-sobre.html">Sobre</a></li>
+        <li><a href="ajuda-index.html">Ajuda</a></li>
+      <li><a href="especial-indice-tematico.html">Índice temático</a></li></ul>
+    </aside>
+  </details>
+
+  <!-- —— 5.2 Conteúdo principal do portal —— -->
+  <main id="conteudo" class="conteudo-principal" data-tp-tipo="pagina">
+    <h1 id="topo">Bem-vindo(a) à TriânguloLeaks</h1>
+    <p class="tagline">
+      A enciclopédia livre e independente sobre o Triângulo Mineiro, com
+      <data value="278" id="contador-home-artigos">278</data> artigos e crescendo.
+    </p>
+
+    <section id="comece-por-aqui" aria-labelledby="titulo-comece"><h2 id="titulo-comece">Comece por aqui</h2><ul class="cartoes-home"><li><a href="artigo-triangulo-mineiro.html"><strong>Triângulo Mineiro</strong></a><br><small>Região de Minas Gerais entre os rios Grande e Paranaíba, com forte vocação agropecuária.</small></li><li><a href="artigo-uberaba.html"><strong>Uberaba</strong></a><br><small>Município referência nacional em pecuária zebuína, sede da ExpoZebu.</small></li><li><a href="artigo-uberlandia.html"><strong>Uberlândia</strong></a><br><small>Município do Triângulo Mineiro, polo logístico, industrial e universitário.</small></li><li><a href="artigo-araxa.html"><strong>Araxá</strong></a><br><small>Município conhecido por suas águas termais e mineração.</small></li><li><a href="artigo-vicente-de-paula-vieira.html"><strong>Vicente de Paula Vieira (Barão da Rifaina)</strong></a><br><small>Figura histórica (1833–1895) ligada a Sacramento (<abbr title="Minas Gerais">MG</abbr>) e ao Triângulo Mineiro.</small></li><li><a href="artigo-estrada-de-ferro-mogiana.html"><strong>Estrada de Ferro Mogiana</strong></a><br><small>A Companhia Mogiana de Estradas de Ferro, fundada em 1872 em Campinas (<abbr title="São Paulo">SP</abbr>), estendeu ramais ao Triângulo Mineiro a partir do final do século XIX, impulsionando o comércio regional de café e gado.</small></li><li><a href="artigo-escravidao-e-alforria-no-triangulo-mineiro-imperial.html"><strong>Escravidão e alforria no Triângulo Mineiro durante o Império</strong></a><br><small>O trabalho escravizado, os processos de alforria e a resistência de pessoas escravizadas no Triângulo Mineiro ao longo do Império, incluindo a transição para o trabalho livre entre a Lei do Ventre Livre (1871) e a Lei Áurea (1888).</small></li><li><a href="artigo-lei-aurea.html"><strong>Lei Áurea</strong></a><br><small>A Lei Áurea, sancionada em <time datetime="1888-05-13">13 de maio de 1888</time> pela princesa regente Isabel, extinguiu a escravidão no Brasil.</small></li></ul><p class="cartoes-home-acoes"><a href="especial-genealogia.html">Explorar as famílias</a> · <a href="especial-linha-do-tempo.html">Linha do tempo</a> · <a href="especial-efemerides.html">Efemérides</a> · <a href="especial-indice-tematico.html">Índice temático</a> · <a href="especial-todas-as-paginas.html">Todos os artigos</a></p></section><section aria-labelledby="titulo-destaque">
+      <div class="titulo-secao"><h2 id="titulo-destaque">Artigo em destaque</h2></div>
+      <div class="artigo-destaque">
+        <figure class="miniatura direita">
+          <svg viewBox="0 0 200 140" role="img" aria-labelledby="titulo-svg-cerrado">
+            <title id="titulo-svg-cerrado">Ilustração de uma árvore de cerrado em estilo gravura</title>
+            <rect width="200" height="140" fill="var(--papel-3)"></rect>
+            <rect y="100" width="200" height="40" fill="var(--terra-roxa)" opacity="0.5"></rect>
+            <line x1="100" y1="60" x2="100" y2="110" stroke="var(--tinta-suave)" stroke-width="5"></line>
+            <circle cx="100" cy="45" r="38" fill="var(--cerrado)"></circle>
+            <circle cx="70" cy="60" r="22" fill="var(--cerrado)"></circle>
+            <circle cx="130" cy="60" r="22" fill="var(--cerrado)"></circle>
+            <circle cx="88" cy="35" r="4" fill="var(--latao-claro)"></circle>
+            <circle cx="112" cy="50" r="4" fill="var(--latao-claro)"></circle>
+          </svg>
+          <figcaption>Vegetação típica do Cerrado, bioma predominante no Triângulo Mineiro.<p class="credito-imagem"><span class="selo-licenca">CC0</span> Ilustração original da TriânguloLeaks — uso e distribuição livres. <a href="ajuda-licenciamento-imagens.html">Sobre o licenciamento</a>.</p></figcaption>
+          
+        </figure>
+        <p>
+          O <strong><a href="artigo-triangulo-mineiro.html">Triângulo Mineiro</a></strong> é uma
+          região do estado de Minas Gerais, situada entre os rios
+          <a href="artigo-rio-grande.html">Grande</a> e
+          <a href="artigo-rio-paranaiba.html">Paranaíba</a>. Conhecida por sua
+          vocação agropecuária, pela pecuária zebuína e por polos universitários como
+          <a href="artigo-uberlandia.html">Uberlândia</a> e <a href="artigo-uberaba.html">Uberaba</a>,
+          a região guarda também um patrimônio histórico e paleontológico expressivo, incluindo os
+          sítios de <a href="artigo-peiropolis.html">Peirópolis</a>.
+        </p>
+        <p><a href="artigo-triangulo-mineiro.html">Leia o artigo completo…</a></p>
+      </div>
+    </section>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+      <section aria-labelledby="titulo-sabia">
+        <div class="titulo-secao"><h2 id="titulo-sabia">Você sabia…</h2></div>
+        <div id="voce-sabia">
+        <ul>
+          <li>…que a Estrada de Ferro Mogiana foi decisiva para o desenvolvimento comercial do Triângulo Mineiro a partir do século XIX? <a href="artigo-estrada-de-ferro-mogiana.html">Leia mais</a></li>
+          <li>…que os fósseis de dinossauros encontrados em Peirópolis, distrito de Uberaba, são estudados há décadas por paleontólogos brasileiros? <a href="artigo-peiropolis.html">Leia mais</a></li>
+          <li>…que Araxá é conhecida por suas águas termais e pela produção do queijo do Serro da região do Barreiro? <a href="artigo-araxa.html">Leia mais</a></li>
+          <li>…que a ExpoZebu, realizada em Uberaba, é uma das maiores feiras de pecuária zebuína do mundo? <a href="artigo-zebu-e-a-expozebu.html">Leia mais</a></li>
+        </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="titulo-dia">
+        <div class="titulo-secao"><h2 id="titulo-dia">Neste dia</h2></div>
+        <div id="neste-dia">
+          <p class="neste-dia-data">Efemérides do dia</p>
+          <p>Esta seção é montada automaticamente, todos os dias, a partir das datas
+          registradas nos próprios artigos (ver <a href="especial-linha-do-tempo.html">Linha do
+          tempo</a>). Com o JavaScript desativado, ela mostra este aviso em vez da lista do dia.</p>
+        </div>
+      </section>
+    </div>
+
+    <section aria-labelledby="titulo-recomendados">
+      <div class="titulo-secao"><h2 id="titulo-recomendados">Sugestões para você</h2></div>
+      <div id="recomendados">
+        <p>As sugestões aparecem aqui depois que você lê alguns artigos. O cálculo é feito
+        no seu próprio navegador, a partir das categorias e dos temas abertos por você —
+        nenhum dado é enviado para servidor algum. Ver
+        <a href="projeto-privacidade.html#aprendizado">como funciona e como apagar</a>.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-destaque-dia">
+      <div class="titulo-secao"><h2 id="titulo-destaque-dia">Artigo em destaque hoje</h2></div>
+      <div id="destaque-do-dia"><p>Um artigo diferente a cada dia, sorteado pelo dia do ano.</p></div>
+    </section>
+
+    <section aria-labelledby="titulo-imagem-dia">
+      <div class="titulo-secao"><h2 id="titulo-imagem-dia">Imagem do dia</h2></div>
+      <figure class="miniatura">
+        <svg viewBox="0 0 220 140" role="img" aria-labelledby="titulo-svg-zebu">
+          <title id="titulo-svg-zebu">Ilustração do perfil de um boi zebu, em estilo gravura</title>
+          <rect width="220" height="140" fill="var(--papel-3)"></rect>
+          <ellipse cx="120" cy="90" rx="70" ry="30" fill="var(--tinta-suave)"></ellipse>
+          <circle cx="60" cy="70" r="28" fill="var(--tinta-suave)"></circle>
+          <path d="M40 55 Q 30 30, 50 35" stroke="var(--latao)" stroke-width="5" fill="none"></path>
+          <path d="M80 55 Q 90 30, 70 35" stroke="var(--latao)" stroke-width="5" fill="none"></path>
+          <ellipse cx="60" cy="45" rx="14" ry="10" fill="var(--tinta-suave)"></ellipse>
+        </svg>
+        <figcaption>Zebu (<i>Bos taurus indicus</i>), raça bovina amplamente criada no Triângulo Mineiro. Ilustração autoral.<p class="credito-imagem"><span class="selo-licenca">CC0</span> Ilustração original da TriânguloLeaks — uso e distribuição livres. <a href="ajuda-licenciamento-imagens.html">Sobre o licenciamento</a>.</p></figcaption>
+        
+      </figure>
+    </section>
+
+    <section aria-labelledby="titulo-eventos">
+      <div class="titulo-secao"><h2 id="titulo-eventos">Eventos atuais <em style="font-size:0.7em; font-weight:400;">(exemplo)</em></h2></div>
+      <ul>
+        <li><time datetime="2026-09">Setembro de 2026</time> — Período de feiras agropecuárias regionais, como referência de calendário (exemplo ilustrativo).</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="titulo-portais">
+      <div class="titulo-secao"><h2 id="titulo-portais">Portais temáticos</h2></div>
+      <nav aria-label="Portais temáticos">
+        <ul style="display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:0.5rem; list-style:none; padding:0;">
+          <li><a href="categoria-geografia.html">Geografia</a></li>
+          <li><a href="categoria-historia.html">História</a></li>
+          <li><a href="categoria-cultura.html">Cultura</a></li>
+          <li><a href="categoria-economia.html">Economia</a></li>
+          <li><a href="categoria-gastronomia.html">Gastronomia</a></li>
+          <li><a href="categoria-meio-ambiente.html">Meio ambiente</a></li>
+          <li><a href="categoria-cidades.html">Cidades</a></li>
+          <li><a href="categoria-pessoas.html">Pessoas</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section aria-labelledby="titulo-mapa">
+      <div class="titulo-secao"><h2 id="titulo-mapa">Mapa esquemático da região</h2></div>
+      <svg class="mapa-svg" viewBox="0 0 320 200" role="img" aria-label="Mapa esquemático do Triângulo Mineiro" style="max-width:26rem;">
+        <rect width="320" height="200" fill="var(--papel-2)" stroke="var(--borda)"></rect>
+        <path d="M10 40 Q 160 10, 310 60" stroke="var(--anil)" stroke-width="3" fill="none" opacity="0.6"></path>
+        <path d="M10 170 Q 160 190, 310 150" stroke="var(--anil)" stroke-width="3" fill="none" opacity="0.6"></path>
+        <a href="artigo-uberlandia.html"><circle cx="120" cy="100" r="6"></circle><text x="130" y="104">Uberlândia</text></a>
+        <a href="artigo-uberaba.html"><circle cx="200" cy="120" r="6"></circle><text x="210" y="124">Uberaba</text></a>
+        <a href="artigo-araxa.html"><circle cx="230" cy="70" r="6"></circle><text x="240" y="74">Araxá</text></a>
+        <a href="artigo-ituiutaba.html"><circle cx="60" cy="90" r="6"></circle><text x="15" y="80">Ituiutaba</text></a>
+        <a href="artigo-frutal.html"><circle cx="40" cy="130" r="6"></circle><text x="10" y="150">Frutal</text></a>
+        <a href="artigo-sacramento-mg.html"><circle cx="255" cy="140" r="6"></circle><text x="200" y="160">Sacramento</text></a>
+      </svg>
+      <p class="legenda-mapa">Mapa esquemático e fora de escala, apenas para orientação geral. Clique em uma cidade para abrir o artigo correspondente.</p>
+    </section>
+  </main>
+</div>
+
+<!-- ============ 6. RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="envolucro-largo">
+    <div class="colunas">
+      <div>
+        <h2>Institucional</h2>
+        <ul>
+          <li><a href="projeto-sobre.html">Sobre a TriânguloLeaks</a></li>
+          <li><a href="projeto-aviso-geral.html">Aviso geral</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Políticas</h2>
+        <ul>
+          <li><a href="projeto-privacidade.html">Privacidade</a></li>
+          <li><a href="projeto-seguranca.html">Segurança</a></li>
+          <li><a href="projeto-termos.html">Termos de uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Comunidade</h2>
+        <ul>
+          <li><a href="projeto-cafe-dos-colaboradores.html">Café dos colaboradores</a></li>
+          <li><a href="ajuda-index.html">Central de ajuda</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="aviso-independente">
+      Conteúdo disponível sob licença de reutilização livre com atribuição, salvo indicação
+      contrária. Página principal atualizada pela última vez em
+      <time datetime="2026-09-19">19 de setembro de 2026</time>.
+      A <strong>TriânguloLeaks</strong> é um projeto independente, mantido por colaboradores
+      voluntários, sem qualquer vínculo com a Fundação Wikimedia ou com a Wikipédia.
+    </p>
+  </div>
+</footer>
+
+<!-- ============ 7. DIÁLOGO: atalho de login ============ -->
+<!-- Melhoria progressiva sobre conta-entrar.html: o link da barra
+     pessoal continua funcionando normalmente sem este <dialog>. -->
+<dialog id="dialogo-entrar" aria-labelledby="titulo-dialogo-entrar">
+  <div class="dialogo-corpo">
+    <h2 id="titulo-dialogo-entrar">Entrar</h2>
+    <p style="font-size:0.85rem;">Esta é uma simulação local: nada é enviado a um servidor.</p>
+    <form method="dialog">
+      <div class="campo">
+        <label for="usuario-dialogo">Nome de usuário</label>
+        <input type="text" id="usuario-dialogo" name="usuario" autocomplete="username" required minlength="3">
+      </div>
+      <div class="dialogo-acoes">
+        <button type="submit" class="botao secundario">Cancelar</button>
+        <a class="botao" href="conta-entrar.html">Ir para a página completa</a>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<script src="js/estado.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+<script src="js/efemerides.js" defer></script>
+<script src="js/contador-home.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
+<script src="js/home-dinamica.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/navegacao-ferramentas.js" defer></script>
+</body></html>
