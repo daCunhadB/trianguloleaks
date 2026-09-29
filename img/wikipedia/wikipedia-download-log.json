@@ -1,0 +1,127 @@
+{
+  "articles_found": 67,
+  "accepted_and_downloaded": 10,
+  "embedded": 10,
+  "records": [
+    {
+      "slug": "gurinhata",
+      "title": "Gurinhatã",
+      "href": "artigo-gurinhata.html",
+      "pageimage": "Gurinhatãmgbandeira.jpg",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/39/Gurinhat%C3%A3mgbandeira.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "license": "Public domain",
+      "artist": "Prefeitura de Gurinhatã",
+      "commons": "https://commons.wikimedia.org/wiki/File:Gurinhat%C3%A3mgbandeira.jpg",
+      "local": "img/wikipedia/gurinhata/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "arapua",
+      "title": "Arapuá",
+      "href": "artigo-arapua.html",
+      "pageimage": "Arapuámgbrasoes.png",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/94/Arapu%C3%A1mgbrasoes.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "license": "Public domain",
+      "artist": "Prefeitura de Arapuá",
+      "commons": "https://commons.wikimedia.org/wiki/File:Arapu%C3%A1mgbrasoes.png",
+      "local": "img/wikipedia/arapua/image.png",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "patos-de-minas",
+      "title": "Patos de Minas",
+      "href": "artigo-patos-de-minas.html",
+      "pageimage": "Patos-de-Minas-MG.jpg",
+      "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Patos-de-Minas-MG.jpg/960px-Patos-de-Minas-MG.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "artist": "@VooSuavecomSom",
+      "commons": "https://commons.wikimedia.org/wiki/File:Patos-de-Minas-MG.jpg",
+      "local": "img/wikipedia/patos-de-minas/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "rio-paranaiba-mg",
+      "title": "Rio Paranaíba",
+      "href": "artigo-rio-paranaiba-mg.html",
+      "pageimage": "MedioParanaiba-AraporaXItumbia-MGxGO.jpg",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/db/MedioParanaiba-AraporaXItumbia-MGxGO.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 4.0",
+      "artist": "Muriloif",
+      "commons": "https://commons.wikimedia.org/wiki/File:MedioParanaiba-AraporaXItumbia-MGxGO.jpg",
+      "local": "img/wikipedia/rio-paranaiba-mg/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "abadia-dos-dourados",
+      "title": "Abadia dos Dourados",
+      "href": "artigo-abadia-dos-dourados.html",
+      "pageimage": "Abadia-dos-dourados-bandeira.png",
+      "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Abadia-dos-dourados-bandeira.png/960px-Abadia-dos-dourados-bandeira.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "license": "CC0",
+      "artist": "A21ns1g4ts",
+      "commons": "https://commons.wikimedia.org/wiki/File:Abadia-dos-dourados-bandeira.png",
+      "local": "img/wikipedia/abadia-dos-dourados/image.png",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "douradoquara",
+      "title": "Douradoquara",
+      "href": "artigo-douradoquara.html",
+      "pageimage": "Perdizes.jpg",
+      "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Perdizes.jpg/960px-Perdizes.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "license": "Public domain",
+      "artist": "Raphael Ramos e Glaucio L. Honorato de Oliveira",
+      "commons": "https://commons.wikimedia.org/wiki/File:Perdizes.jpg",
+      "local": "img/wikipedia/douradoquara/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "monte-carmelo",
+      "title": "Monte Carmelo",
+      "href": "artigo-monte-carmelo.html",
+      "pageimage": "MountCarmel1.JPG",
+      "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/MountCarmel1.JPG/960px-MountCarmel1.JPG?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "license": "CC BY-SA 3.0",
+      "artist": "user:netanel_h",
+      "commons": "https://commons.wikimedia.org/wiki/File:MountCarmel1.JPG",
+      "local": "img/wikipedia/monte-carmelo/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "arapora",
+      "title": "Araporã",
+      "href": "artigo-arapora.html",
+      "pageimage": "Arapora-Foto-Aerea-2005.jpg",
+      "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Arapora-Foto-Aerea-2005.jpg/960px-Arapora-Foto-Aerea-2005.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "license": "Public domain",
+      "artist": "Muriloif",
+      "commons": "https://commons.wikimedia.org/wiki/File:Arapora-Foto-Aerea-2005.jpg",
+      "local": "img/wikipedia/arapora/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "tupaciguara",
+      "title": "Tupaciguara",
+      "href": "artigo-tupaciguara.html",
+      "pageimage": "Bandeiratupaciguara.jpg",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bandeiratupaciguara.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "license": "Public domain",
+      "artist": "Prefeitura Municipal de Tupaciguara",
+      "commons": "https://commons.wikimedia.org/wiki/File:Bandeiratupaciguara.jpg",
+      "local": "img/wikipedia/tupaciguara/image.jpg",
+      "status": "baixada e incluída"
+    },
+    {
+      "slug": "universidade-federal-do-triangulo-mineiro",
+      "title": "Universidade Federal do Triângulo Mineiro",
+      "href": "artigo-universidade-federal-do-triangulo-mineiro.html",
+      "pageimage": "LOGOUFTM.png",
+      "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/77/LOGOUFTM.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 4.0",
+      "artist": "Seltonss",
+      "commons": "https://commons.wikimedia.org/wiki/File:LOGOUFTM.png",
+      "local": "img/wikipedia/universidade-federal-do-triangulo-mineiro/image.png",
+      "status": "baixada e incluída"
+    }
+  ]
+}
