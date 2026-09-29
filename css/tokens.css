@@ -1,0 +1,77 @@
+/* ===========================================================
+   tokens.css — paleta, tipografia e escalas do Triângulo Mineiro
+   ===========================================================
+   ÍNDICE DESTE ARQUIVO
+     1. :root                          → tokens do tema claro
+        "Papel de fazenda" (papel, tinta, terra-roxa, latão,
+        cerrado, anil, cores de link) + tipografia + escalas
+        de layout (medida de leitura, raio, larguras). É o tema
+        da PRIMEIRA visita (o site não segue o modo escuro do
+        sistema operacional).
+     2. :root[data-tema="escuro"]      → tokens do tema escuro
+        "Noite de cerrado", aplicados só depois que o usuário
+        escolhe o tema escuro; a escolha persiste (tema.js).
+   Este é o único arquivo que define cores em valores absolutos;
+   todos os outros arquivos (base, layout, componentes,
+   responsivo, print) consomem exclusivamente var(--token).
+   =========================================================== */
+@layer tokens {
+  /* 1. :root → tokens do tema claro ("papel de fazenda"): cores,
+     tipografia e escalas de layout usadas por padrão. */
+  :root {
+    color-scheme: light;
+
+    /* --- Papel de fazenda (claro) --- */
+    --papel: #f7f0e1;
+    --papel-2: #efe4cd;
+    --papel-3: #e6d8ba;
+    --tinta: #2b1d1a;
+    --tinta-suave: #5a4a41;
+    --terra-roxa: #6d1f2b;
+    --terra-roxa-forte: #4a1219;
+    --latao: #a8812f;
+    --latao-claro: #cba658;
+    --cerrado: #4d5b2c;
+    --anil: #2b4c7e;
+    --link-visitado: #5b2a5e;
+    --link-vermelho: #b3261e;
+    --borda: #c9b98d;
+    --sombra: rgb(43 29 26 / 18%);
+
+    /* --- Tipografia --- */
+    --fonte-serif: "Cormorant Garamond", "Fraunces", "Linux Libertine", Georgia, "Times New Roman", serif;
+    --fonte-sans: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+    --fonte-mono: ui-monospace, "Cascadia Code", "Courier New", monospace;
+
+    /* --- Escalas --- */
+    --medida-leitura: 72ch;
+    --raio: 3px;
+    --largura-lateral: 11rem;
+    --altura-topo: 3.2rem;
+  }
+
+  /* 2. :root[data-tema="escuro"] → tema escuro "Noite de cerrado",
+     aplicado SOMENTE quando o usuário escolheu o tema escuro no botão
+     sol/lua (ou em Preferências). A escolha fica em localStorage
+     ("tp:tema") e js/tema.js a reaplica, antes da 1ª pintura, em toda
+     visita seguinte. O sistema operacional NÃO decide o tema:
+     na primeira visita o site sempre abre no tema claro. */
+  :root[data-tema="escuro"] {
+    color-scheme: dark;
+    --papel: #17100f;
+    --papel-2: #211816;
+    --papel-3: #2b201d;
+    --tinta: #eadfca;
+    --tinta-suave: #bcae95;
+    --terra-roxa: #c0586a;
+    --terra-roxa-forte: #e0798a;
+    --latao: #d1a852;
+    --latao-claro: #e6c884;
+    --cerrado: #a3b56a;
+    --anil: #8fb0e0;
+    --link-visitado: #c39ad0;
+    --link-vermelho: #ff8a80;
+    --borda: #4a3a2f;
+    --sombra: rgb(0 0 0 / 45%);
+  }
+}

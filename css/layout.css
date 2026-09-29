@@ -1,0 +1,280 @@
+/* ===========================================================
+   layout.css — grade da página: topo, lateral, conteúdo, rodapé
+   ===========================================================
+   ÍNDICE DESTE ARQUIVO
+     1. .ladrilho            → faixa decorativa (padrão de ladrilho
+        hidráulico) usada no topo de todas as páginas
+     2. .barra-pessoal       → linha fina acima do cabeçalho, com
+        links de conta (Entrar/Criar conta/Preferências…)
+     3. .cabecalho           → logo + nome do projeto + busca;
+        `position: sticky` para acompanhar a rolagem
+     4. .corpo               → grade de 2 colunas (lateral + conteúdo)
+     5. .lateral             → menu lateral em blocos <details>
+        (Navegação, Colaboração, Ferramentas, Imprimir/exportar)
+     6. @media (max-width: 720px) → esconde a lateral de mesa e
+        mostra .menu-mobile (a mesma lateral dentro de um <details>)
+     7. .conteudo-principal  → coluna de leitura, respiro interno
+     8. .abas-nav            → abas Artigo/Discussão e Ler/Editar/
+        Histórico, no topo do <main> de cada artigo
+     9. .rodape              → rodapé institucional em colunas +
+        aviso de independência do projeto
+    10. .envolucro-largo     → contêiner centralizado de largura
+        máxima, reutilizado em cabeçalho, rodapé e barra pessoal
+   =========================================================== */
+@layer layout {
+
+  /* 1. .ladrilho — faixa de ladrilho hidráulico, usada no topo e no rodapé */
+  .ladrilho {
+    height: 0.55rem;
+    background-image:
+      conic-gradient(var(--terra-roxa) 90deg, transparent 90deg 180deg, var(--terra-roxa) 180deg 270deg, transparent 270deg),
+      conic-gradient(var(--latao) 90deg, transparent 90deg 180deg, var(--latao) 180deg 270deg, transparent 270deg);
+    background-size: 0.55rem 0.55rem, 0.55rem 0.55rem;
+    background-position: 0 0, 0.275rem 0.275rem;
+    background-color: var(--papel-3);
+  }
+
+  /* 2. ---- Barra pessoal ---- */
+  .barra-pessoal {
+    background: var(--papel-2);
+    border-bottom: 1px solid var(--borda);
+    font-size: 0.85rem;
+  }
+  .barra-pessoal > .envolucro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.35rem 1rem;
+  }
+  .barra-pessoal ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .barra-pessoal a { text-decoration: none; }
+  .barra-pessoal a:hover { text-decoration: underline; }
+
+  /* 3. ---- Cabeçalho com logo ---- */
+  .cabecalho {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    background: var(--papel);
+    border-bottom: 3px solid var(--terra-roxa);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .cabecalho .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .cabecalho .logo-link:visited { color: inherit; }
+  .cabecalho .nome-projeto {
+    font-family: var(--fonte-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+    color: var(--terra-roxa);
+    line-height: 1.1;
+  }
+  .cabecalho .slogan {
+    display: block;
+    font-family: var(--fonte-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--tinta-suave);
+    font-weight: 400;
+  }
+
+  /* Botão de alternar tema (claro/escuro) — ver componentes.css
+     para o comportamento dos ícones sol/lua. */
+  .botao-tema {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-inline-start: 0.5rem;
+    border: 1px solid var(--borda);
+    border-radius: 50%;
+    background: var(--papel-2);
+    color: var(--terra-roxa);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .botao-tema:hover { background: var(--papel-3); }
+
+  /* 4. ---- Corpo: lateral + conteúdo ---- */
+  .corpo {
+    display: grid;
+    grid-template-columns: clamp(9rem, 14vw, 16rem) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  /* 5. .lateral → menu lateral em blocos <details> (Navegação,
+     Colaboração, Ferramentas, Imprimir/exportar) */
+  .lateral {
+    padding: 1rem 0.75rem;
+    background: var(--papel-2);
+    border-right: 1px solid var(--borda);
+    font-size: 0.85rem;
+  }
+  .lateral.lateral-desktop {
+    position: sticky;
+    top: calc(var(--altura-topo, 3.2rem) + 1rem);
+    max-height: calc(100vh - var(--altura-topo, 3.2rem) - 1.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+  .lateral details {
+    margin-bottom: 0.9rem;
+  }
+  .lateral summary {
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0.2rem 0;
+    color: var(--terra-roxa);
+  }
+  .lateral ul {
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0;
+  }
+  .lateral li { margin-bottom: 0.3rem; }
+  .lateral a { text-decoration: none; }
+  .lateral a:hover { text-decoration: underline; }
+
+  /* 6. .menu-mobile / @media (max-width: 720px) → esconde a lateral
+     de mesa e mostra .menu-mobile (a mesma lateral dentro de um
+     <details>) */
+  .menu-mobile { display: none; }
+
+  @media (max-width: 720px) {
+    .corpo { grid-template-columns: 1fr; }
+    .lateral.lateral-desktop { display: none; }
+    .menu-mobile { display: block; position: sticky; top: var(--altura-topo, 3.2rem); z-index: 8; margin: 0; max-height: calc(100vh - var(--altura-topo, 3.2rem)); overflow-y: auto; }
+    .menu-mobile > summary {
+      font-weight: 700;
+      padding: 0.5rem 0.75rem;
+      background: var(--papel-2);
+      border: 1px solid var(--borda);
+      border-radius: var(--raio);
+      cursor: pointer;
+    }
+    .menu-mobile[open] > summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .menu-mobile .lateral { border: 1px solid var(--borda); border-top: none; }
+    .conteudo-principal { padding: 1rem clamp(.75rem, 4vw, 1.5rem) 2.5rem; }
+  }
+
+  /* 7. .conteudo-principal → coluna de leitura, respiro interno */
+  .conteudo-principal {
+    padding: 1.25rem 1.5rem 3rem;
+    min-width: 0;
+  }
+
+  /* 8. Abas Artigo/Discussão e Ler/Editar/Histórico */
+  .abas-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    border-bottom: 1px solid var(--borda);
+    padding: 0 1.5rem;
+    background: var(--papel-2);
+  }
+  .abas-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  .abas-nav a {
+    display: inline-block;
+    padding: 0.6rem 0.9rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 3px solid transparent;
+    color: var(--tinta);
+  }
+  .abas-nav a:visited { color: var(--tinta); }
+  .abas-nav a[aria-current="page"] {
+    border-bottom-color: var(--terra-roxa);
+    font-weight: 700;
+    color: var(--terra-roxa);
+  }
+  .abas-nav a:hover { background: var(--papel-3); }
+
+  /* 9. Rodapé */
+  .rodape {
+    background: var(--papel-2);
+    border-top: 1px solid var(--borda);
+    padding: 1.5rem 1.5rem 1rem;
+    font-size: 0.8rem;
+    color: var(--tinta-suave);
+  }
+  .rodape .colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+    max-width: none;
+    margin-bottom: 1rem;
+  }
+  .rodape h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--fonte-sans);
+    color: var(--tinta);
+    margin: 0 0 0.4rem;
+  }
+  .rodape ul { list-style: none; margin: 0; padding: 0; }
+  .rodape li { margin-bottom: 0.25rem; }
+  .rodape .aviso-independente {
+    border-top: 1px solid var(--borda);
+    padding-top: 0.75rem;
+  }
+
+  /* 10. .envolucro-largo → contêiner centralizado de largura máxima,
+     reutilizado em cabeçalho, rodapé e barra pessoal */
+  .envolucro-largo {
+    width: min(100%, 100rem);
+    margin: 0 auto;
+  }
+  @media (min-width: 1800px) {
+    .envolucro-largo { width: min(100%, 120rem); }
+    .conteudo-principal { padding-inline: clamp(2rem, 4vw, 5rem); }
+  }
+  @media (max-width: 360px) {
+    .cabecalho { padding-inline: .5rem; gap: .4rem; }
+    .cabecalho .nome-projeto { font-size: 1.05rem; }
+    .abas-nav { padding-inline: .25rem; }
+    .abas-nav a { padding-inline: .45rem; }
+    .conteudo-principal { padding-inline: .65rem; }
+  }
+}
+
+@layer layout {
+  /* 3-b. ---- Cabeçalho em telas estreitas (rodada §7-v) ----
+     Sem isto, o formulário de busca não cabia em 375 px e criava rolagem
+     horizontal na página inteira. */
+  .cabecalho search { flex: 1 1 12rem; min-width: 0; }
+  .cabecalho .busca-form { display: flex; flex-wrap: wrap; gap: 0.4rem; min-width: 0; }
+  .cabecalho .busca-form input[type="search"] { flex: 1 1 8rem; min-width: 0; }
+  @media (max-width: 560px) {
+    .cabecalho search { order: 3; flex-basis: 100%; }
+    .cabecalho .busca-form button { flex: 1 1 auto; }
+  }
+  html, body { max-width: 100%; overflow-x: hidden; }
+}

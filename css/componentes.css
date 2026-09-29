@@ -1,0 +1,1173 @@
+/* ===========================================================
+   componentes.css — infobox, sumário, avisos, referências,
+   diálogos, popovers, tabelas, formulários
+   ===========================================================
+   ÍNDICE DESTE ARQUIVO (na ordem em que aparecem abaixo)
+     1.  .busca-form                     → campo + botões "Ir"/"Pesquisar"
+     2.  .tagline / .hatnote / .banner-redirecionado
+                                          → linha de subtítulo, nota de
+         desambiguação e aviso "(Redirecionado de…)" via :target
+     3.  .caixa-aviso                    → avisos de manutenção (esboço,
+         sem fontes) e sup.cn            → "[citação necessária]"
+     4.  .infobox                        → ficha lateral do artigo
+     5.  #sumario                        → sumário recolhível numerado
+     6.  .titulo-secao / .link-editar-secao / .ancora-secao
+                                          → cabeçalho de cada <h2>/<h3>
+         com link [editar] e âncora ¶; realce de seção/linha via :target
+     7.  figure.miniatura / .galeria     → imagens no corpo do artigo
+     8.  .wikitable                      → tabelas de dados do artigo
+     9.  .referencias                    → lista numerada de notas/fontes
+     10. details.navbox                  → caixa de navegação no rodapé
+         do artigo (municípios e temas relacionados)
+     11. .catlinks                       → lista de categorias do artigo
+     12. .estrela-rotulo                 → caixa de seleção "vigiar" (★/☆)
+     13. dialog / ::backdrop             → estilo base de todos os <dialog>
+     14. [popover] / .menu-popover / .previa-popover
+                                          → menus suspensos e prévia de link
+     15. .botao / .botao.secundario      → botões genéricos reutilizáveis
+     16. fieldset/legend/label/input/textarea/select
+                                          → formulários (login, edição,
+         discussão, preferências)
+     17. .barra-editor / #corpo-wiki     → barra de ferramentas do editor
+     18. table.tabela-diff               → comparação lado a lado (diff)
+     19. .aviso-simulacao                → aviso "isto é uma simulação"
+     20. .lista-historico / .bytes-mais / .bytes-menos
+                                          → lista de revisões (Histórico)
+     21. .topico-discussao / .resposta-discussao / .assinatura
+                                          → tópicos da página de Discussão
+     22. .mapa-svg / .legenda-mapa       → mapa esquemático clicável
+     23. .linha-estat / meter / progress → página de Estatísticas
+     24. .icone-tema-sol / .icone-tema-lua → ícone correto do botão de
+         tema mesmo sem JS (CSS puro, a partir de [data-tema]/SO)
+     25. .separador-ou / .lista-login-social / .botao-social / .icone-social
+                                          → login/cadastro social simulado
+         (Google, Microsoft, Apple, Protonmail) — ver js/conta.js
+     26. .lightbox                       → visualizador de imagem via :target
+     27. .grafico-barras / .grafico-barra → gráfico de barras simples
+         (rankings de Mais visitados e Contribuições)
+     28. .paineis-ranking                → colunas lado a lado para dois
+         rankings (ex.: página de Contribuições)
+     29. .filtros-busca / .filtros-genealogia → busca avançada com
+         filtros (inclui filtros de genealogia estilo FamilySearch)
+     30. .credito-imagem / .selo-licenca   → crédito e licença sob
+         cada imagem/ilustração inserida (ver ajuda-licenciamento-imagens.html)
+     31. .caixa-doacao / .campo-pix / .qrcode-pix → Café dos colaboradores
+         (doação via Pix simulada; ver js/pix.js e js/qrcode.js)
+     32. Transições, sombra e luz          → hover/foco com elevação,
+         abertura suave de <details>, entrada da página; tudo
+         desligado automaticamente por @media (prefers-reduced-motion)
+         em base.css
+     33. Refinamento acadêmico/clássico     → prosa do artigo em serifa
+         justificada com hifenização, versaletes/traço nos títulos de
+         seção, capitular na introdução, bibliografia com recuo
+         francês — acabamento de página de livro/verbete impresso
+     34. @view-transition (fora de @layer) → transição suave nativa
+         entre páginas, sem JavaScript; regra de nível de documento
+     35. Genealogia (.arvore-genealogica, .genea-*, .genea-item…) → árvores
+         de ascendência/descendência nos artigos e a página
+         Especial:Genealogia (filtros, cartões, diálogo de árvore)
+     36. Marcação semântica (q, time, abbr, cite, .tabela-rolavel,
+         .mapa-incorporado, .lista-efemerides, .cartoes-home)
+   Observação: .botao-tema (o botão circular do cabeçalho) é definido
+   em layout.css, não neste arquivo — não entra na numeração acima.
+   =========================================================== */
+@layer componentes {
+
+  /* 1. ---- Busca ---- */
+  .busca-form {
+    display: flex;
+    gap: 0.4rem;
+    margin-inline-start: auto;
+    flex-wrap: wrap;
+  }
+  .busca-form input[type="search"] {
+    font: inherit;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--papel);
+    color: var(--tinta);
+    min-width: 12rem;
+  }
+  .busca-form button {
+    font: inherit;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--terra-roxa);
+    background: var(--terra-roxa);
+    color: var(--papel);
+    border-radius: var(--raio);
+    cursor: pointer;
+  }
+  .busca-form button.secundario {
+    background: transparent;
+    color: var(--terra-roxa);
+  }
+  .busca-form button:hover { filter: brightness(1.1); }
+
+  /* 2. ---- Tagline e hatnotes ---- */
+  .tagline { color: var(--tinta-suave); font-style: italic; margin-top: -0.5rem; }
+  .hatnote {
+    font-style: italic;
+    color: var(--tinta-suave);
+    border-inline-start: 3px solid var(--anil);
+    padding-inline-start: 0.6rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .banner-redirecionado {
+    display: none;
+    background: var(--papel-3);
+    border: 1px dashed var(--borda);
+    padding: 0.5rem 0.8rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  #inicio:target ~ .banner-redirecionado,
+  .banner-redirecionado:target { display: block; }
+
+  /* 3. ---- Caixas de aviso ---- */
+  .caixa-aviso {
+    border: 2px double var(--latao);
+    background: color-mix(in srgb, var(--latao) 12%, var(--papel));
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    max-width: none;
+  }
+  .caixa-aviso svg { flex-shrink: 0; width: 2rem; height: 2rem; }
+  .caixa-aviso.grave {
+    border-color: var(--terra-roxa);
+    background: color-mix(in srgb, var(--terra-roxa) 10%, var(--papel));
+  }
+  .caixa-aviso p { margin: 0; font-size: 0.9rem; }
+
+  sup.cn a { color: var(--link-vermelho); text-decoration: none; font-size: 0.8em; }
+  sup.cn a:hover { text-decoration: underline; }
+
+  /* 4. ---- Infobox ---- */
+  .infobox {
+    float: right;
+    width: 17rem;
+    margin: 0 0 1rem 1.25rem;
+    border: 1px solid var(--borda);
+    background: var(--papel-2);
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .infobox caption {
+    font-family: var(--fonte-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: var(--terra-roxa);
+    color: var(--papel);
+    padding: 0.5rem;
+  }
+  .infobox td, .infobox th {
+    border-top: 1px solid var(--borda);
+    padding: 0.35rem 0.5rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .infobox th[scope="row"] {
+    width: 40%;
+    font-weight: 600;
+    color: var(--tinta-suave);
+  }
+  .infobox .infobox-imagem {
+    text-align: center;
+    padding: 0.75rem;
+  }
+  .infobox .infobox-secao {
+    background: var(--papel-3);
+    font-weight: 700;
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    .infobox { float: none; width: 100%; margin-inline: 0; }
+  }
+
+  /* 5. ---- Sumário ---- */
+  #sumario {
+    display: inline-block;
+    border: 1px solid var(--borda);
+    background: var(--papel-2);
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    max-width: 22rem;
+  }
+  #sumario summary {
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--fonte-serif);
+  }
+  #sumario ol {
+    counter-reset: item;
+    padding-left: 0;
+    margin: 0.6rem 0 0;
+  }
+  #sumario ol li {
+    counter-increment: item;
+    list-style: none;
+    margin-bottom: 0.3rem;
+  }
+  #sumario ol li::before {
+    content: counters(item, ".") " ";
+    color: var(--latao);
+    font-weight: 700;
+    margin-inline-end: 0.3em;
+  }
+  #sumario ol ol { margin-top: 0.3rem; }
+  #sumario a { text-decoration: none; }
+  #sumario a:hover { text-decoration: underline; }
+
+  @media (min-width: 900px) {
+    .com-sumario-fixo #sumario {
+      position: sticky;
+      top: calc(var(--altura-topo) + 3.2rem);
+    }
+  }
+
+  /* 6. ---- Seções e âncora de edição ---- */
+  .titulo-secao {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--borda);
+    margin-top: 2rem;
+  }
+  .titulo-secao h2, .titulo-secao h3 { margin: 0 0 0.3rem; border: none; }
+  .link-editar-secao {
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .ancora-secao {
+    text-decoration: none;
+    opacity: 0;
+    margin-inline-end: 0.3em;
+    color: var(--latao);
+  }
+  h2:hover .ancora-secao, h3:hover .ancora-secao,
+  .ancora-secao:focus { opacity: 1; }
+
+  section[id]:target > .titulo-secao,
+  li:target, tr:target {
+    background: color-mix(in srgb, var(--latao) 22%, transparent);
+    outline: 2px dashed var(--latao);
+    outline-offset: 3px;
+  }
+
+  /* 7. ---- Miniaturas e galeria ---- */
+  figure.miniatura {
+    border: 1px solid var(--borda);
+    background: var(--papel-2);
+    padding: 0.5rem;
+    max-width: 18rem;
+  }
+  /* Imagens dos artigos: carrossel responsivo e visualização ampliada. */
+  .carrossel-artigo {
+    max-width: min(100%, 52rem);
+    margin: 1.25rem auto 1.75rem;
+    padding: 0.75rem;
+    border: 1px solid var(--borda);
+    background: var(--papel-2);
+  }
+  .carrossel-artigo__slide { display: none; max-width: none; margin: 0; text-align: center; }
+  .carrossel-artigo__slide[aria-hidden="false"] { display: block; }
+  .carrossel-artigo__slide img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(100%, 48rem);
+    max-height: 62vh;
+    margin: 0 auto;
+    object-fit: contain;
+    cursor: zoom-in;
+  }
+  .carrossel-artigo__slide figcaption,
+  .carrossel-artigo__slide .credito-imagem { max-width: 48rem; margin-inline: auto; text-align: left; }
+  .carrossel-artigo__controles { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: .65rem; }
+  .carrossel-artigo__controles button,
+  .visualizador-imagem__fechar { min-width: 2.75rem; min-height: 2.75rem; cursor: pointer; }
+  .carrossel-artigo__contador { color: var(--tinta-suave); font-size: .9rem; }
+  .visualizador-imagem { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem; background: rgb(12 10 9 / 92%); }
+  .visualizador-imagem[open] { display: flex; }
+  .visualizador-imagem img { display: block; max-width: 100%; max-height: calc(100vh - 2rem); width: auto; height: auto; object-fit: contain; }
+  .visualizador-imagem__fechar { position: absolute; top: .75rem; right: .75rem; border: 1px solid white; border-radius: 50%; color: white; background: #222; font-size: 1.6rem; }
+  @media (max-width: 40rem) {
+    .carrossel-artigo { width: 100%; padding: .5rem; }
+    .carrossel-artigo__slide img { width: 100%; max-width: 100%; max-height: 72vh; }
+  }
+  figure.miniatura.direita { float: right; margin: 0 0 1rem 1.25rem; }
+  figure.miniatura.esquerda { float: left; margin: 0 1.25rem 1rem 0; }
+  figure.miniatura figcaption {
+    font-size: 0.8rem;
+    color: var(--tinta-suave);
+    padding-top: 0.4rem;
+  }
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    max-width: none;
+  }
+  .galeria figure {
+    margin: 0;
+    border: 1px solid var(--borda);
+    background: var(--papel-2);
+    padding: 0.4rem;
+  }
+  .galeria figcaption { font-size: 0.75rem; color: var(--tinta-suave); }
+
+  /* 8. ---- Tabelas ---- */
+  .wikitable {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: none;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    display: block;
+  }
+  .wikitable caption {
+    caption-side: top;
+    font-weight: 700;
+    text-align: left;
+    padding-bottom: 0.4rem;
+  }
+  .wikitable th, .wikitable td {
+    border: 1px solid var(--borda);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+  }
+  .wikitable thead th {
+    background: var(--papel-3);
+  }
+  .wikitable tbody tr:nth-child(even) { background: color-mix(in srgb, var(--papel-2) 60%, transparent); }
+
+  /* 9. ---- Referências ---- */
+  .referencias {
+    font-size: 0.85rem;
+    column-width: 22rem;
+    column-gap: 2rem;
+    max-width: none;
+  }
+  .referencias li { margin-bottom: 0.4rem; break-inside: avoid; }
+  .referencias a { text-decoration: none; }
+
+  /* 10. ---- Navbox ---- */
+  details.navbox {
+    margin-top: 2rem;
+    border: 1px solid var(--borda);
+    max-width: none;
+  }
+  details.navbox summary {
+    background: var(--papel-2);
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--fonte-serif);
+  }
+  details.navbox table { width: 100%; border-collapse: collapse; }
+  details.navbox th {
+    background: var(--papel-3);
+    text-align: left;
+    padding: 0.4rem 0.75rem;
+    width: 12rem;
+  }
+  details.navbox td { padding: 0.4rem 0.75rem; }
+
+  /* 11. ---- Categorias ---- */
+  .catlinks {
+    margin-top: 2rem;
+    border-top: 1px solid var(--borda);
+    padding-top: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .catlinks ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    padding: 0;
+    margin: 0.3rem 0 0;
+  }
+  .catlinks li::before { content: "▸ "; color: var(--latao); }
+
+  /* 12. ---- Estrela de vigilância ---- */
+  .estrela-rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.55rem 0.6rem;
+  }
+  .estrela-rotulo input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .estrela-rotulo .icone-estrela::before { content: "☆"; font-size: 1.1rem; }
+  .estrela-rotulo input:checked ~ .icone-estrela::before { content: "★"; color: var(--latao); }
+  .estrela-rotulo input:focus-visible ~ .icone-estrela { outline: 2px solid var(--latao); }
+
+  /* 13. ---- Dialogs ---- */
+  dialog {
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--papel);
+    color: var(--tinta);
+    max-width: min(32rem, 92vw);
+    padding: 0;
+    box-shadow: 0 10px 30px var(--sombra);
+  }
+  dialog::backdrop { background: rgb(20 14 12 / 55%); }
+  dialog .dialogo-corpo { padding: 1.25rem 1.5rem; }
+  dialog h2 { margin-top: 0; }
+  dialog .dialogo-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  dialog textarea[readonly] {
+    width: 100%;
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    background: var(--papel-2);
+    border: 1px solid var(--borda);
+    padding: 0.5rem;
+  }
+
+  /* 14. ---- Popovers (menus suspensos, prévia) ---- */
+  [popover] {
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--papel);
+    color: var(--tinta);
+    padding: 0.6rem;
+    max-width: 20rem;
+    box-shadow: 0 6px 18px var(--sombra);
+  }
+  .menu-popover ul { list-style: none; margin: 0; padding: 0; }
+  .menu-popover li { margin-bottom: 0.2rem; }
+  .menu-popover a { display: block; padding: 0.3rem 0.4rem; text-decoration: none; border-radius: var(--raio); }
+  .menu-popover a:hover { background: var(--papel-2); }
+  .previa-popover { font-size: 0.85rem; }
+
+  /* 15. ---- Botões genéricos ---- */
+  .botao {
+    display: inline-block;
+    font: inherit;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--terra-roxa);
+    background: var(--terra-roxa);
+    color: var(--papel);
+    border-radius: var(--raio);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .botao.secundario { background: transparent; color: var(--terra-roxa); }
+  .botao:hover { filter: brightness(1.1); }
+
+  /* 16. ---- Formulários ---- */
+  fieldset {
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 0.75rem 1rem;
+    margin: 0 0 1rem;
+  }
+  legend { font-weight: 700; padding: 0 0.4rem; font-family: var(--fonte-serif); }
+  label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+  input[type="text"], input[type="password"], input[type="email"], textarea, select {
+    font: inherit;
+    width: 100%;
+    max-width: 30rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--papel);
+    color: var(--tinta);
+  }
+  textarea { max-width: none; width: 100%; font-family: var(--fonte-mono); }
+  .campo { margin-bottom: 0.9rem; }
+  .ajuda-campo { font-size: 0.78rem; color: var(--tinta-suave); }
+
+  /* 17. ---- Editor: barra de ferramentas ---- */
+  .barra-editor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    border: 1px solid var(--borda);
+    border-bottom: none;
+    background: var(--papel-2);
+    padding: 0.35rem;
+  }
+  .barra-editor button {
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid var(--borda);
+    background: var(--papel);
+    color: var(--tinta);
+    border-radius: var(--raio);
+    cursor: pointer;
+  }
+  .barra-editor button:hover { background: var(--papel-3); }
+  #corpo-wiki { border-radius: 0; min-height: 20rem; }
+
+  /* 18. ---- Diff ---- */
+  table.tabela-diff { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.tabela-diff td {
+    border: 1px solid var(--borda);
+    padding: 0.6rem;
+    vertical-align: top;
+    font-size: 0.88rem;
+  }
+  table.tabela-diff ins { background: color-mix(in srgb, var(--cerrado) 30%, transparent); text-decoration: none; }
+  table.tabela-diff del { background: color-mix(in srgb, var(--link-vermelho) 25%, transparent); }
+  .diff-meta { font-size: 0.8rem; color: var(--tinta-suave); margin-bottom: 0.6rem; }
+
+  /* 19. ---- Aviso de simulação ---- */
+  .aviso-simulacao {
+    background: var(--papel-2);
+    border: 1px dashed var(--borda);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  /* 20. ---- Histórico ---- */
+  .lista-historico { list-style: none; padding: 0; font-size: 0.9rem; }
+  .lista-historico li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--borda);
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  .bytes-mais { color: var(--cerrado); font-weight: 700; }
+  .bytes-menos { color: var(--link-vermelho); font-weight: 700; }
+
+  /* 21. ---- Discussão ---- */
+  .topico-discussao { border-top: 1px solid var(--borda); padding-top: 1rem; margin-top: 1.5rem; }
+  .resposta-discussao { margin-left: 1.5rem; border-left: 2px solid var(--borda); padding-left: 1rem; margin-top: 1rem; }
+  .assinatura { font-size: 0.8rem; color: var(--tinta-suave); }
+
+  /* 22. ---- Mapa esquemático ---- */
+  .mapa-svg a { cursor: pointer; }
+  .mapa-svg a text { fill: var(--tinta); font-family: var(--fonte-sans); font-size: 0.7rem; }
+  .mapa-svg a circle { fill: var(--terra-roxa); }
+  .mapa-svg a:hover circle { fill: var(--latao); }
+  .mapa-svg a:focus-visible circle { outline: 2px solid var(--latao); }
+  .legenda-mapa { font-size: 0.78rem; color: var(--tinta-suave); font-style: italic; }
+
+  /* 23. ---- Meter/progress em estatísticas ---- */
+  .linha-estat { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+  .linha-estat dt { width: 12rem; font-weight: 600; }
+  meter, progress { width: 12rem; }
+
+  /* 24. ---- Ícones do botão de tema: mostra o ícone certo mesmo sem JS,
+     via CSS puro, a partir de [data-tema] no <html> (que tema.js aplica
+     de forma síncrona). Padrão (primeira visita) = claro → mostra o SOL
+     (clicar leva ao escuro); no escuro mostra a LUA. ---- */
+  .icone-tema-lua { display: none; }
+  :root[data-tema="escuro"] .icone-tema-sol { display: none; }
+  :root[data-tema="escuro"] .icone-tema-lua { display: inline; }
+
+  /* 25. ---- Separador "ou" entre login local e login social ---- */
+  .separador-ou {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--tinta-suave);
+    font-size: 0.8rem;
+  }
+  .separador-ou::before,
+  .separador-ou::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+
+  /* ---- Botões de login/cadastro social (simulados) ----
+     Nenhum destes botões faz uma requisição real: js/conta.js
+     apenas abre um diálogo explicando a simulação (ver seção 8
+     do prompt de criação: "não implementar autenticação real"). */
+  .lista-login-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .botao-social {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--borda);
+    background: var(--papel);
+    color: var(--tinta);
+    border-radius: var(--raio);
+    cursor: pointer;
+    text-align: left;
+  }
+  .botao-social:hover { background: var(--papel-2); }
+
+  /* Ícones genéricos e abstratos — identificam o provedor pelo
+     texto do botão, sem reproduzir marcas registradas de terceiros. */
+  .icone-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: var(--fonte-sans);
+    overflow: hidden;
+  }
+  .icone-social--google {
+    background: conic-gradient(#4285f4 0deg 90deg, #34a853 90deg 180deg, #fbbc05 180deg 270deg, #ea4335 270deg 360deg);
+    color: #fff;
+    text-shadow: 0 0 2px rgb(0 0 0 / 40%);
+  }
+  .icone-social--microsoft { background: #fff; border-radius: 2px; }
+  .icone-social--apple {
+    background: var(--tinta);
+    border-radius: 50%;
+    position: relative;
+  }
+  .icone-social--apple::before {
+    /* forma abstrata e genérica (círculo + haste), não o logotipo da Apple */
+    content: "";
+    position: absolute;
+    inset: 0.3em;
+    background: var(--papel);
+    border-radius: 50%;
+  }
+  .icone-social--proton {
+    background: linear-gradient(160deg, #6d4aff, #8a3ffc);
+    border-radius: 4px;
+    position: relative;
+  }
+  .icone-social--proton::before {
+    /* escudo genérico simplificado (segurança/privacidade), forma abstrata */
+    content: "";
+    position: absolute;
+    left: 50%; top: 18%;
+    width: 45%; height: 55%;
+    background: var(--papel);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 65%, 50% 100%, 0% 65%, 0% 25%);
+    transform: translateX(-50%);
+  }
+
+  /* 26. ---- Lightbox via :target ---- */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgb(20 14 12 / 85%);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox:target { display: flex; }
+  .lightbox img { max-height: 85vh; }
+  .lightbox figcaption { color: var(--papel); text-align: center; margin-top: 0.6rem; }
+  .lightbox .fechar-lightbox {
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    color: var(--papel);
+    font-size: 2rem;
+    text-decoration: none;
+  }
+
+  /* 27. ---- Gráfico de barras simples (Mais visitados / Contribuições) ----
+     Sem biblioteca externa (mantém a regra de "sem CDN"): cada barra é
+     uma <li> com uma <div> cuja largura é definida via `style="width:"`
+     inline pelo JavaScript que monta o gráfico. Sem JS, o container
+     correspondente simplesmente não é preenchido — a lista em texto
+     (sempre desenhada primeiro) continua sendo a informação principal,
+     e o gráfico é só um reforço visual dela. */
+  .grafico-barras {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .grafico-barra {
+    display: grid;
+    grid-template-columns: 9rem 1fr 3.5rem;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+  }
+  .grafico-barra .grafico-rotulo {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .grafico-barra .grafico-trilho {
+    background: var(--papel-3);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    height: 1.1rem;
+    overflow: hidden;
+  }
+  .grafico-barra .grafico-preenchimento {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terra-roxa), var(--latao));
+    min-width: 2px;
+  }
+  .grafico-barra .grafico-valor {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--tinta-suave);
+  }
+  .grafico-barra:nth-child(1) .grafico-rotulo { font-weight: 700; color: var(--terra-roxa); }
+
+  /* 28. ---- Painéis lado a lado (ex.: dois rankings em Contribuições) ---- */
+  .paineis-ranking {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  /* 29. ---- Busca avançada (Especial:Pesquisar) ---- */
+  .filtros-busca {
+    background: var(--papel-2);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .filtros-busca > summary {
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--terra-roxa);
+  }
+  .filtros-busca .grade-filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.75rem 1rem;
+    margin: 0.75rem 0 1rem;
+  }
+  .filtros-busca .campo-largo { grid-column: 1 / -1; }
+  .filtros-genealogia {
+    border: 1px dashed var(--borda);
+    border-radius: var(--raio);
+    padding: 0.75rem 1rem 0.25rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .filtros-genealogia legend {
+    padding: 0 0.4rem;
+    color: var(--terra-roxa);
+    font-weight: 700;
+  }
+  .filtros-genealogia .grade-filtros { margin-top: 0.25rem; }
+
+  /* 30. ---- Licenciamento de imagens ----
+     Selo + linha de crédito exibidos sob QUALQUER imagem/ilustração
+     inserida no site (ver ajuda-licenciamento-imagens.html): nossas
+     próprias ilustrações SVG levam "CC0"/"Domínio público"; fotos
+     reais trazidas de acervos externos (ex.: Wikimedia Commons)
+     levam autor + licença original, nunca removida. */
+  .credito-imagem {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-size: 0.72rem;
+    color: var(--tinta-suave);
+    margin-top: 0.3rem;
+  }
+  .selo-licenca {
+    display: inline-block;
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 0.05rem 0.5rem;
+    background: var(--papel-2);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .credito-imagem a { text-decoration: underline; }
+
+  /* 31. ---- Café dos colaboradores: doação via Pix (js/pix.js + js/qrcode.js) ---- */
+  .caixa-doacao {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: var(--papel-2);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 1rem;
+  }
+  .campo-valor-pix { max-width: 16rem; }
+  .qrcode-pix {
+    display: block;
+    width: 220px;
+    height: 220px;
+    max-width: 100%;
+    margin: 0 auto 1rem;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+  }
+  .campo-pix {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  .campo-pix textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    word-break: break-all;
+  }
+
+  /* 32. ---- Transições, luz e sombra (visual clássico/formal) ----
+     Regra geral: qualquer coisa clicável ganha uma transição suave
+     de cor/sombra/posição; imagens e "cartões" (infobox, figuras,
+     diálogos) ganham uma leve elevação com sombra ao ganhar destaque.
+     @media (prefers-reduced-motion) em base.css já zera a duração de
+     toda animação/transição daqui para quem pediu menos movimento. */
+  a, .botao, .botao.secundario, .botao-tema, .botao-social,
+  summary, input, textarea, select, .selo-licenca,
+  figure.miniatura, .infobox, .wikitable tbody tr {
+    transition: background-color 0.18s ease, color 0.18s ease,
+                border-color 0.18s ease, box-shadow 0.18s ease,
+                transform 0.18s ease, opacity 0.18s ease;
+  }
+
+  .botao:hover, .botao.secundario:hover, .botao-social:hover {
+    box-shadow: 0 4px 14px var(--sombra);
+    transform: translateY(-1px);
+  }
+  .botao:active, .botao.secundario:active, .botao-social:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px var(--sombra);
+  }
+  .botao-tema:hover { box-shadow: 0 3px 10px var(--sombra); transform: translateY(-1px); }
+
+  figure.miniatura {
+    border-radius: var(--raio);
+  }
+  figure.miniatura:hover svg,
+  figure.miniatura:hover img {
+    box-shadow: 0 8px 22px var(--sombra);
+    transform: translateY(-2px);
+  }
+  figure.miniatura svg, figure.miniatura img {
+    display: block;
+    border-radius: var(--raio);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .infobox { box-shadow: 0 6px 20px var(--sombra); }
+  .wikitable tbody tr:hover { background: var(--papel-3); }
+
+  /* Abertura suave do conteúdo de qualquer <details> (seções do
+     artigo, menus, ajuda) — dispara sempre que o navegador passa a
+     exibir o conteúdo (display: none → block), sem exigir JS. */
+  details[open] > *:not(summary) {
+    animation: tp-revelar 0.22s ease;
+  }
+  @keyframes tp-revelar {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Entrada suave do conteúdo principal ao carregar a página. */
+  .conteudo-principal {
+    animation: tp-entrada 0.35s ease;
+  }
+  @keyframes tp-entrada {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- 33. Refinamento acadêmico/clássico ----
+     Objetivo: aproximar a leitura de um verbete de enciclopédia
+     impressa/artigo acadêmico — serifa no corpo do texto (a
+     navegação/formulários continuam em fonte de interface, sem
+     serifa, por legibilidade em telas pequenas), títulos em
+     versaletes com traço, capitular na introdução, bibliografia
+     com recuo francês. Nada disto muda a estrutura do HTML. */
+  .conteudo-principal p,
+  .conteudo-principal li,
+  .conteudo-principal dd,
+  .conteudo-principal dt,
+  .conteudo-principal blockquote {
+    font-family: var(--fonte-serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .conteudo-principal > p,
+  .conteudo-principal section > p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  /* Capitular (drop cap) só no parágrafo de abertura do artigo. */
+  .conteudo-principal .lead::first-letter {
+    font-family: var(--fonte-serif);
+    font-size: 3.4em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.82;
+    padding: 0.03em 0.08em 0 0;
+    color: var(--terra-roxa);
+  }
+  .conteudo-principal .lead {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  /* Títulos de seção em versaletes com traço, ao gosto de um sumário
+     de livro/verbete impresso — mantém o <h2> semântico intacto. */
+  .conteudo-principal .titulo-secao h2 {
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    border-bottom: 3px double var(--borda);
+    padding-bottom: 0.3rem;
+  }
+  .conteudo-principal h3 {
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+  }
+  /* Título principal do artigo com traço duplo abaixo, como o
+     cabeçalho de um verbete de enciclopédia impressa. */
+  .conteudo-principal > h1:first-of-type {
+    border-bottom: 3px double var(--borda);
+    padding-bottom: 0.4rem;
+  }
+  /* Bibliografia com recuo francês (hanging indent), convenção de
+     referência acadêmica (ABNT/APA). */
+  .referencias {
+    font-family: var(--fonte-serif);
+  }
+  .referencias li {
+    padding-left: 1.6rem;
+    text-indent: -1.6rem;
+  }
+  .painel-ferramentas > summary { list-style-position: inside; }
+  .painel-ferramentas button.imprimir-avancado {
+    padding: 0; border: 0; background: none; color: var(--anil);
+    font: inherit; text-align: left; text-decoration: underline; cursor: pointer;
+  }
+  .dialog-impressao {
+    width: min(46rem, calc(100vw - 1.5rem)); max-width: 46rem;
+    max-height: min(88vh, 58rem); overflow: auto; padding: clamp(1rem, 3vw, 2rem);
+    border: 1px solid var(--borda); border-radius: var(--raio);
+    color: var(--tinta); background: var(--papel);
+  }
+  .dialog-impressao::backdrop { background: rgb(15 10 9 / 68%); }
+  .dialog-impressao h2 { margin-top: 0; }
+  .dialog-impressao h3 { font-size: 1.1rem; }
+  .dialog-impressao fieldset { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: .35rem .75rem; max-height: 35vh; overflow: auto; border: 1px solid var(--borda); }
+  .impressao-opcao { display: flex; align-items: flex-start; gap: .5rem; min-width: 0; }
+  .impressao-opcao input { flex: none; margin-top: .25rem; }
+  .impressao-opcao label { overflow-wrap: anywhere; }
+  .impressao-ajustes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: .75rem; margin-block: 1rem; }
+  .impressao-ajustes label { display: grid; gap: .25rem; font-weight: 600; }
+  .impressao-ajustes select { width: 100%; min-height: 2.5rem; }
+  .dialog-impressao__acoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+  .dialog-impressao__acoes button { min-height: 2.6rem; padding: .45rem .8rem; }
+
+  @media print {
+    .conteudo-principal p,
+    .conteudo-principal li {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* 34. Transições suaves de página inteira (navegação entre documentos),
+   recurso nativo do navegador — sem nenhum JavaScript. Em navegadores
+   sem suporte, a navegação simplesmente continua instantânea, como
+   sempre foi (melhoria progressiva). Fica fora de @layer de propósito:
+   é uma regra de nível de documento, não um componente de interface. */
+@view-transition {
+  navigation: auto;
+}
+
+@layer componentes {
+  /* 34. ---- Recolher/expandir (js/recolher.js) ----
+     Todo elemento que pode cobrir ou espremer o texto durante a rolagem
+     (ficha lateral/infobox, imagens flutuantes, sumário fixo e o
+     cabeçalho fixo do topo) ganha um botão de recolher. A classe
+     .sem-flutuar é aplicada pelo próprio JS quando ele detecta, durante
+     a rolagem, que o elemento estaria de fato sobrepondo um parágrafo. */
+  .botao-recolher {
+    position: absolute;
+    top: 0.25rem;
+    inset-inline-end: 0.25rem;
+    z-index: 2;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+    background: var(--papel);
+    color: var(--tinta);
+    cursor: pointer;
+    line-height: 1;
+  }
+  .botao-recolher:hover { background: var(--papel-3); }
+  .botao-recolher:focus-visible { outline: 2px solid var(--anil); outline-offset: 2px; }
+  .botao-recolher-icone::before { content: "–"; font-weight: 700; }
+  .botao-recolher[aria-expanded="false"] .botao-recolher-icone::before { content: "+"; }
+
+  .recolhivel { position: relative; }
+  /* O botão fica no canto superior direito: o título precisa de folga
+     para não passar por baixo dele. */
+  .infobox-envoltorio > table.infobox caption,
+  figure.miniatura.recolhivel figcaption:first-of-type,
+  #sumario.recolhivel > details > summary { padding-inline-end: 2rem; }
+
+  /* Infobox: envolvida por um contêiner para poder receber o botão. */
+  .infobox-envoltorio {
+    float: right;
+    width: 17rem;
+    max-width: 100%;
+    margin: 0 0 1rem 1.25rem;
+  }
+  .infobox-envoltorio > table.infobox { float: none; width: 100%; margin: 0; table-layout: fixed; max-width: 100%; }
+  .infobox-envoltorio > table.infobox img,
+  .infobox-envoltorio > table.infobox svg { max-width: 100%; height: auto; }
+  .infobox-envoltorio.recolhido > table.infobox tr:not(:first-child) { display: none; }
+  .infobox-envoltorio.recolhido > table.infobox .infobox-imagem { display: none; }
+  .infobox-envoltorio.recolhido { width: 12rem; }
+
+  figure.miniatura.recolhido > :not(.botao-recolher):not(figcaption) { display: none; }
+  figure.miniatura.recolhido { max-width: 12rem; }
+
+  #sumario.recolhido > :not(.botao-recolher) { display: none; }
+
+  /* Deixar de flutuar (decidido em tempo de rolagem pelo JS). */
+  .sem-flutuar,
+  .infobox-envoltorio.sem-flutuar,
+  figure.miniatura.sem-flutuar {
+    float: none !important;
+    margin-inline: 0 !important;
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* Cabeçalho fixo recolhido: vira uma faixa fina, sem cobrir o texto. */
+  body.cabecalho-recolhido header.cabecalho {
+    padding-block: 0.15rem;
+    gap: 0.4rem;
+  }
+  body.cabecalho-recolhido header.cabecalho .nome-projeto,
+  body.cabecalho-recolhido header.cabecalho search,
+  body.cabecalho-recolhido header.cabecalho .botao-tema { display: none; }
+  .botao-recolher-cabecalho { position: static; margin-inline-start: auto; }
+
+  /* Âncoras não podem ficar escondidas atrás do cabeçalho fixo. */
+  .conteudo-principal :is(h1, h2, h3, [id]) { scroll-margin-top: calc(var(--altura-topo, 3.5rem) + 1rem); }
+
+  /* Palavras muito longas (URLs, nomes compostos) não furam a caixa. */
+  .conteudo-principal p, .conteudo-principal li, .infobox td, .infobox th { overflow-wrap: anywhere; }
+
+  /* Uma seção nunca começa "dentro" de uma figura flutuante anterior. */
+  .conteudo-principal > details > section::after { content: ""; display: block; clear: both; }
+
+  @media (max-width: 720px) {
+    .infobox-envoltorio { float: none; width: 100%; margin-inline: 0; }
+    figure.miniatura.direita, figure.miniatura.esquerda { float: none; margin-inline: 0; max-width: 100%; }
+  }
+
+  @media print {
+    .botao-recolher { display: none; }
+    .recolhido > * { display: revert !important; }
+  }
+}
+
+/* 35–36 ficam em camada própria, depois de todas as demais seções */
+@layer componentes {
+  /* 35. ---- Genealogia ---- */
+  .secao-genealogia > summary { cursor: pointer; }
+  .genea-intro { font-size: 0.95rem; color: var(--tinta-suave); }
+  .genea-arvore { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1rem 1.5rem; max-width: none; }
+  .genea-grupo { min-width: 0; }
+  .genea-grupo h3 { margin: 0.6rem 0 0.35rem; font-size: 1.05rem; }
+  .genea-citados { margin-top: 1rem; max-width: none; }
+  .genea-citados > summary { cursor: pointer; }
+  .genea-citados > summary > h3 { display: inline; }
+  .arvore-genealogica, .arvore-genealogica ul { list-style: none; margin: 0; padding: 0; max-width: none; }
+  .arvore-genealogica ul { margin-inline-start: 0.4rem; padding-inline-start: 1rem; border-inline-start: 2px solid var(--borda); }
+  .arvore-genealogica li { position: relative; margin: 0.3rem 0; padding-inline-start: 0.2rem; }
+  .arvore-genealogica ul > li::before { content: ""; position: absolute; inset-inline-start: -1rem; top: 0.85em; width: 0.8rem; border-top: 2px solid var(--borda); }
+  .genea-papel { display: inline-block; min-width: 2.6rem; font-family: var(--fonte-sans); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--latao); }
+  .genea-anos, .genea-resumo { font-size: 0.82rem; color: var(--tinta-suave); }
+  .genea-conjuge { font-size: 0.9rem; color: var(--tinta-suave); }
+  .genea-lista { list-style: none; margin: 0; padding: 0; }
+  .genea-lista li { margin: 0.25rem 0; }
+  a.genea-sem-artigo, span.genea-sem-artigo { font-style: italic; text-decoration-style: dotted; color: var(--tinta); }
+  .genea-cartao { border: 1px solid var(--borda); background: var(--papel-2); margin: 0.4rem 0; padding: 0.3rem 0.75rem; max-width: none; }
+  .genea-cartao > summary { cursor: pointer; padding: 0.25rem 0; }
+  .genea-cartao p { max-width: none; }
+  .genea-acoes, .genea-rodape, .genea-citada, .genea-sem-dados { font-size: 0.85rem; max-width: none; }
+  .genea-dados { display: grid; grid-template-columns: minmax(6.5rem, max-content) 1fr; gap: 0.15rem 1rem; margin: 0.4rem 0; max-width: none; font-size: 0.95rem; }
+  .genea-dados dt { font-family: var(--fonte-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tinta-suave); padding-top: 0.15rem; }
+  .genea-dados dd { margin: 0; min-width: 0; }
+  .genea-panorama { max-width: none; }
+  .genea-familias { list-style: none; padding: 0; margin: 0; columns: 20rem; column-gap: 1.5rem; max-width: none; }
+  .genea-familias > li { break-inside: avoid; margin: 0 0 0.4rem; }
+  .genea-familias summary { cursor: pointer; }
+  .genea-letra { margin: 1.5rem 0 0.4rem; padding-bottom: 0.15rem; border-bottom: 1px solid var(--borda); font-variant: normal; }
+  .genea-lista-completa { max-width: none; }
+  .genea-item { border-inline-start: 4px solid var(--borda); padding: 0.1rem 0 0.4rem 1rem; margin: 0.5rem 0 1rem; }
+  .genea-item:target { border-inline-start-color: var(--latao); background: color-mix(in srgb, var(--latao) 14%, transparent); }
+  .genea-item h3 { margin: 0.3rem 0; font-variant: normal; }
+  .genea-item[hidden] { display: none; }
+  .filtros-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0.6rem 1rem; max-width: none; }
+  .filtros-grade label { display: grid; gap: 0.2rem; font-family: var(--fonte-sans); font-size: 0.85rem; font-weight: 600; }
+  .filtros-grade input, .filtros-grade select { width: 100%; min-height: 2.5rem; font: inherit; font-weight: 400; }
+  .filtros-acoes { display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: none; }
+  .filtros-resultado { font-size: 0.9rem; color: var(--tinta-suave); max-width: none; }
+  .genea-caminho { list-style: none; margin: 0.5rem 0; padding: 0; max-width: none; counter-reset: passo; }
+  .genea-caminho li { margin: 0.35rem 0; padding-inline-start: 0.2rem; }
+  .genea-caminho .genea-elo { display: inline-block; margin-inline-end: 0.5rem; padding: 0 0.5rem; border-radius: 999px; background: var(--papel-3); font-family: var(--fonte-sans); font-size: 0.75rem; }
+  .dialog-arvore { width: min(46rem, calc(100vw - 1.5rem)); max-height: 88vh; overflow: auto; padding: clamp(1rem, 3vw, 2rem); border: 1px solid var(--borda); border-radius: var(--raio); color: var(--tinta); background: var(--papel); }
+  .dialog-arvore::backdrop { background: rgb(15 10 9 / 68%); }
+  .dialog-acoes { text-align: end; max-width: none; }
+
+  /* 36. ---- Marcação semântica ---- */
+  q { quotes: "“" "”" "‘" "’"; font-style: italic; }
+  q[cite]:hover { text-decoration: underline dotted var(--latao); }
+  time { white-space: nowrap; }
+  abbr[title] { text-decoration-color: var(--latao); }
+  .tabela-rolavel { max-width: 100%; overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  .tabela-rolavel:focus-visible { outline: 3px solid var(--latao); outline-offset: 2px; }
+  .tabela-rolavel > .wikitable { display: table; margin: 0; min-width: 32rem; }
+  .mapa-incorporado { display: block; width: 100%; height: clamp(16rem, 42vw, 26rem); border: 1px solid var(--borda); background: var(--papel-2); }
+  .lista-efemerides { list-style: none; padding: 0; max-width: none; }
+  .lista-efemerides li { margin: 0.45rem 0; padding: 0.25rem 0 0.25rem 0.75rem; border-inline-start: 3px solid var(--borda); }
+  .cartoes-home { list-style: none; padding: 0; margin: 0.5rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0.75rem; max-width: none; }
+  .cartoes-home li { padding: 0.75rem; border: 1px solid var(--borda); background: var(--papel-2); border-radius: var(--raio); }
+  .cartoes-home small { color: var(--tinta-suave); font-family: var(--fonte-sans); }
+  .cartoes-home-acoes { max-width: none; font-size: 0.9rem; }
+  summary.titulo-secao { display: flex; align-items: baseline; gap: 0.6rem; cursor: pointer; }
+  summary.titulo-secao > h2 { display: inline; }
+}

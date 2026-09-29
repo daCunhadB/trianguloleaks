@@ -1,0 +1,167 @@
+/* ===========================================================
+   responsivo.css — adaptação a TODOS os tamanhos de tela
+   ===========================================================
+   Carregado depois de componentes.css. Só ajusta escala, grade e
+   toque; cores continuam vindo de var(--token) (tokens.css).
+
+   ÍNDICE DESTE ARQUIVO
+     1. Base fluida        → tipografia e espaçamento por clamp(), zonas
+        seguras (notch/barras do sistema), quebra de palavras, mídia
+     2. Faixas de largura  → o layout muda em pontos de quebra medidos
+        pelo CONTEÚDO, não por aparelhos:
+        ≤ 360 px  (celular pequeno / dobrável fechado)
+        ≤ 480 px  (celular)
+        ≤ 720 px  (celular grande / tablet em pé) — menu-mobile
+        ≤ 1024 px (tablet) — lateral estreita, infobox em coluna única
+        ≥ 1440 px (desktop largo)   ≥ 1800 px  (monitor grande)
+        ≥ 2400 px (ultralargo / 4K sem escala)
+     3. Orientação e altura → celular deitado (altura ≤ 480 px): cabeçalho
+        deixa de ser fixo para não comer a tela
+     4. Toque e ponteiro    → alvos ≥ 44 px em telas de toque; hover só
+        onde existe
+     5. Navegação           → abas e barra pessoal rolam na horizontal em
+        vez de quebrar em várias linhas
+     6. Conteúdo            → infobox, tabelas, mapas, figuras, formulários
+     7. Preferências        → contraste, movimento e tela cheia
+   =========================================================== */
+@layer responsivo {
+
+  /* 1. ---- Base fluida ---- */
+  :root {
+    --espaco: clamp(0.75rem, 2.5vw, 1.5rem);
+    --altura-topo: 3.2rem;
+  }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--altura-topo) + 1rem); }
+  body { font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem); padding-inline: env(safe-area-inset-left) env(safe-area-inset-right); }
+  h1 { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); }
+  h2 { font-size: clamp(1.25rem, 1.1rem + 0.9vw, 1.65rem); }
+  h3 { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); }
+  img, video, canvas, svg, iframe { max-width: 100%; }
+  img { height: auto; }
+  pre, code { overflow-wrap: anywhere; }
+  pre { overflow-x: auto; max-width: 100%; }
+  .conteudo-principal { padding-inline: var(--espaco); }
+  .conteudo-principal p, .conteudo-principal ul, .conteudo-principal ol, .conteudo-principal dl { max-width: min(100%, var(--medida-leitura)); }
+  .conteudo-principal .genea-arvore, .conteudo-principal .genea-lista-completa { max-width: none; }
+
+  /* 2. ---- Faixas de largura ---- */
+  @media (max-width: 1024px) {
+    .corpo { grid-template-columns: clamp(8rem, 18vw, 11rem) minmax(0, 1fr); }
+    .conteudo-principal { padding-block: 1rem 2.5rem; }
+    .infobox-envoltorio, .infobox { width: min(15rem, 44%); }
+    .referencias { column-width: 18rem; }
+  }
+  @media (max-width: 720px) {
+    .corpo { grid-template-columns: minmax(0, 1fr); }
+    .infobox-envoltorio, .infobox { float: none; width: 100%; max-width: none; margin: 0 0 1rem; }
+    .conteudo-principal > p, .conteudo-principal section > p, .conteudo-principal .lead { text-align: start; hyphens: auto; }
+    .referencias { column-width: auto; column-count: 1; }
+    .cabecalho { position: sticky; top: 0; }
+    .abas-nav { padding-inline: 0.5rem; }
+    .rodape { padding-inline: var(--espaco); }
+    .genea-dados { grid-template-columns: 1fr; gap: 0; }
+    .genea-dados dt { padding-top: 0.5rem; }
+    .genea-familias { columns: 1; }
+    .arvore-genealogica ul { padding-inline-start: 0.7rem; margin-inline-start: 0.2rem; }
+    .conteudo-principal .lead::first-letter { font-size: 2.8em; }
+  }
+  @media (max-width: 480px) {
+    .barra-pessoal { font-size: 0.8rem; }
+    .barra-pessoal > .envolucro { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+    .cabecalho { gap: 0.4rem; padding: 0.45rem 0.6rem; }
+    .cabecalho .nome-projeto { font-size: 1.05rem; }
+    .cabecalho .logo-link svg { width: 30px; height: 30px; }
+    .botao-tema { margin-inline-start: auto; }
+    .filtros-grade { grid-template-columns: 1fr; }
+    .dialog-impressao, .dialog-arvore { width: calc(100vw - 1rem); max-height: 92vh; padding: 0.9rem; }
+    table.wikitable { font-size: 0.85rem; }
+    .cartoes-home { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 360px) {
+    body { font-size: 0.93rem; }
+    .conteudo-principal { padding-inline: 0.6rem; }
+    .abas-nav a { padding: 0.55rem 0.4rem; font-size: 0.82rem; }
+    .cabecalho .nome-projeto { font-size: 0.98rem; }
+    .cabecalho .botao-tema { width: 2.5rem; height: 2.5rem; }
+  }
+  @media (max-width: 300px) {
+    .cabecalho .nome-projeto { display: none; }
+    .conteudo-principal { padding-inline: 0.45rem; }
+  }
+  @media (min-width: 1440px) {
+    :root { --medida-leitura: 76ch; --largura-lateral: 13rem; }
+    .conteudo-principal p, .conteudo-principal li { font-size: 1.1rem; }
+  }
+  @media (min-width: 1800px) {
+    :root { --medida-leitura: 80ch; }
+    .corpo { grid-template-columns: clamp(12rem, 12vw, 18rem) minmax(0, 1fr); }
+    .infobox-envoltorio, .infobox { width: 19rem; }
+  }
+  @media (min-width: 2400px) {
+    html { font-size: 112.5%; }
+    .envolucro-largo { width: min(100%, 150rem); }
+  }
+
+  /* 3. ---- Orientação e altura ---- */
+  @media (max-height: 480px) and (orientation: landscape) {
+    .cabecalho { position: static; }
+    .lateral.lateral-desktop { position: static; max-height: none; }
+    .menu-mobile { position: static; max-height: none; }
+    .ladrilho { height: 0.35rem; }
+  }
+  @media (orientation: portrait) and (min-width: 721px) and (max-width: 1024px) {
+    .infobox-envoltorio, .infobox { width: min(17rem, 40%); }
+  }
+
+  /* 4. ---- Toque e ponteiro ---- */
+  @media (pointer: coarse) {
+    .abas-nav a, .barra-pessoal a, .lateral a, .catlinks a, .botao, button, summary { min-height: 2.75rem; }
+    .abas-nav a, .barra-pessoal a, .lateral a, .catlinks a { display: inline-flex; align-items: center; }
+    .lateral li { margin-bottom: 0.15rem; }
+    .botao-recolher { width: 2.5rem; height: 2.5rem; }
+    input, select, textarea { font-size: 1rem; min-height: 2.75rem; }
+    .arvore-genealogica li { margin: 0.5rem 0; }
+  }
+  @media (hover: none) {
+    .ancora-secao { opacity: 0.55; }
+  }
+
+  /* 5. ---- Navegação ---- */
+  .abas-nav ul, .barra-pessoal ul { max-width: 100%; }
+  @media (max-width: 720px) {
+    .abas-nav ul { overflow-x: auto; scrollbar-width: thin; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+    .abas-nav a { white-space: nowrap; }
+    .barra-pessoal ul { gap: 0.4rem 0.9rem; }
+  }
+
+  /* 6. ---- Conteúdo ---- */
+  figure, figure.miniatura { max-width: min(100%, 22rem); }
+  figure.miniatura img { width: 100%; }
+  @media (max-width: 720px) {
+    figure.miniatura, figure.miniatura.direita, figure.miniatura.esquerda { float: none; max-width: 100%; margin-inline: 0; }
+    .carrossel-artigo { margin-inline: 0; }
+  }
+  .wikitable, .conteudo-principal table:not(.infobox) { max-width: 100%; }
+  .conteudo-principal details > summary { overflow-wrap: anywhere; }
+  .conteudo-principal .titulo-secao { flex-wrap: wrap; }
+  .caixa-aviso { flex-wrap: wrap; }
+  .caixa-aviso p, .caixa-aviso ul, .caixa-aviso ol { max-width: none; }
+  .conteudo-principal p { hyphens: auto; overflow-wrap: break-word; }
+  .caixa-aviso > div, .caixa-aviso > p { flex: 1 1 14rem; min-width: 0; }
+  @media (max-width: 480px) {
+    .caixa-aviso { padding: 0.6rem 0.7rem; gap: 0.5rem; }
+    .caixa-aviso svg { width: 1.5rem; height: 1.5rem; }
+  }
+  form.busca-form, .filtros-busca { max-width: 100%; }
+  .filtros-busca input, .filtros-busca select, .filtros-busca textarea { max-width: 100%; }
+
+  /* 7. ---- Preferências do usuário ---- */
+  @media (prefers-contrast: more) {
+    :root { --borda: #6b5a3d; }
+    a { text-decoration-thickness: 2px; }
+  }
+  @media (forced-colors: active) {
+    .ladrilho { forced-color-adjust: none; }
+    .botao-tema, .botao-recolher { border: 1px solid ButtonText; }
+  }
+}

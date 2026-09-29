@@ -1,0 +1,58 @@
+/* Impressão e exportação em PDF. A seleção do diálogo aplica a classe
+   tp-nao-imprimir; as preferências de papel usam páginas nomeadas. */
+@media print {
+  .barra-pessoal, .abas-nav, .lateral, .menu-mobile, .ladrilho,
+  .busca-form, .catlinks .editar, .link-editar-secao, .ancora-secao,
+  .pular, .estrela-rotulo, dialog, [popover], .aviso-simulacao,
+  .ferramentas-pagina, .imprimir-botao, .imprimir-avancado,
+  .botao-recolher, .carrossel-artigo__controles, .visualizador-imagem { display:none !important; }
+  .tp-nao-imprimir { display:none !important; }
+  html, body { background:#fff !important; color:#000 !important; }
+  html { page: page-a4-portrait-normal; }
+  html[data-print-paper="a4"][data-print-orientation="portrait"][data-print-margins="compact"] { page:page-a4-portrait-compact; }
+  html[data-print-paper="a4"][data-print-orientation="portrait"][data-print-margins="wide"] { page:page-a4-portrait-wide; }
+  html[data-print-paper="a4"][data-print-orientation="landscape"][data-print-margins="normal"] { page:page-a4-landscape-normal; }
+  html[data-print-paper="a4"][data-print-orientation="landscape"][data-print-margins="compact"] { page:page-a4-landscape-compact; }
+  html[data-print-paper="a4"][data-print-orientation="landscape"][data-print-margins="wide"] { page:page-a4-landscape-wide; }
+  html[data-print-paper="letter"][data-print-orientation="portrait"][data-print-margins="normal"] { page:page-letter-portrait-normal; }
+  html[data-print-paper="letter"][data-print-orientation="portrait"][data-print-margins="compact"] { page:page-letter-portrait-compact; }
+  html[data-print-paper="letter"][data-print-orientation="portrait"][data-print-margins="wide"] { page:page-letter-portrait-wide; }
+  html[data-print-paper="letter"][data-print-orientation="landscape"][data-print-margins="normal"] { page:page-letter-landscape-normal; }
+  html[data-print-paper="letter"][data-print-orientation="landscape"][data-print-margins="compact"] { page:page-letter-landscape-compact; }
+  html[data-print-paper="letter"][data-print-orientation="landscape"][data-print-margins="wide"] { page:page-letter-landscape-wide; }
+  .corpo { display:block !important; }
+  .conteudo-principal { width:100%; max-width:none; padding:0; margin:0; }
+  body { font-family:Georgia,"Times New Roman",serif; font-size:11pt; line-height:1.45; }
+  html[data-print-text="small"] body { font-size:9.5pt; }
+  html[data-print-text="large"] body { font-size:13pt; }
+  h1,h2,h3,h4 { color:#000 !important; font-family:Georgia,"Times New Roman",serif; break-after:avoid; }
+  h1 { font-size:1.8em; border-bottom:1px solid #777; padding-bottom:.25em; }
+  h2 { font-size:1.35em; margin-top:1.2em; }
+  a,a:visited { color:#000; text-decoration:underline; }
+  a[href^="http"]::after { content:" (" attr(href) ")"; font-size:.75em; color:#333; overflow-wrap:anywhere; }
+  .infobox-envoltorio { float:none !important; width:100%; max-width:100%; margin:1em 0; }
+  .infobox-envoltorio:has(> .infobox.tp-nao-imprimir) { display:none !important; }
+  .infobox { float:none; width:100%; border:1px solid #000; }
+  .carrossel-artigo { max-width:100%; border:0; padding:0; }
+  .carrossel-artigo__slide { display:block !important; break-inside:avoid; margin:1em 0; }
+  img { max-width:100% !important; max-height:18cm; object-fit:contain; }
+  figure, table, blockquote { break-inside:avoid; }
+  section, details { break-inside:auto; }
+  details > * { display:block !important; }
+  .recolhido > * { display:revert !important; }
+  p, li { orphans:3; widows:3; }
+  .rodape { border-top:1px solid #777; font-size:8pt; }
+  @page { size:A4 portrait; margin:2cm; }
+  @page page-a4-portrait-normal { size:A4 portrait; margin:2cm; }
+  @page page-a4-portrait-compact { size:A4 portrait; margin:1cm; }
+  @page page-a4-portrait-wide { size:A4 portrait; margin:2.8cm; }
+  @page page-a4-landscape-normal { size:A4 landscape; margin:2cm; }
+  @page page-a4-landscape-compact { size:A4 landscape; margin:1cm; }
+  @page page-a4-landscape-wide { size:A4 landscape; margin:2.8cm; }
+  @page page-letter-portrait-normal { size:letter portrait; margin:2cm; }
+  @page page-letter-portrait-compact { size:letter portrait; margin:1cm; }
+  @page page-letter-portrait-wide { size:letter portrait; margin:2.8cm; }
+  @page page-letter-landscape-normal { size:letter landscape; margin:2cm; }
+  @page page-letter-landscape-compact { size:letter landscape; margin:1cm; }
+  @page page-letter-landscape-wide { size:letter landscape; margin:2.8cm; }
+}
